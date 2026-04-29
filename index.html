@@ -119,7 +119,7 @@
         .marquee-wrapper::before, .marquee-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; }
         .marquee-wrapper::before { left: 0; background: linear-gradient(to right, var(--navy-mid), transparent); }
         .marquee-wrapper::after { right: 0; background: linear-gradient(to left, var(--navy-mid), transparent); }
-        .marquee-content { display: flex; gap: 40px; animation: scroll-left 20s linear infinite; white-space: nowrap; padding-left: 40px; }
+        .marquee-content { display: flex; gap: 40px; animation: scroll-left 10s linear infinite; white-space: nowrap; padding-left: 40px; width: max-content; }
         .marquee-item { font-size: 20px; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
         .marquee-item:hover { color: #fff; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }

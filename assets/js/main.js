@@ -79,6 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
         tickerTrack.appendChild(clone);
     }
 
+    // 5.1 Recruiter Logos Cloner for Infinite Scroll
+    const marqueeContent = document.querySelector('.marquee-content');
+    if (marqueeContent) {
+        // Clone all logo cards to create a seamless loop
+        const logos = Array.from(marqueeContent.children);
+        logos.forEach(logo => {
+            const clone = logo.cloneNode(true);
+            marqueeContent.appendChild(clone);
+        });
+    }
+
     // 6. Tab Switcher
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
