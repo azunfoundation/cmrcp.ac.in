@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .gallery-section { background: var(--navy); }
+        
+        .gallery-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+        .filter-btn { padding: 10px 24px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .filter-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .filter-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        
+        .gallery-item { position: relative; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; border: 1px solid var(--border); animation: fadeIn 0.5s ease forwards; }
+        .gallery-item::before { content: ''; display: block; padding-top: 75%; /* 4:3 Aspect Ratio */ }
+        
+        /* Placeholder styling for images */
+        .g-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px; transition: transform 0.5s ease; }
+        
+        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,62,0.9) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .g-img { transform: scale(1.05); }
+        
+        .g-cat { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; transform: translateY(10px); transition: transform 0.3s ease; }
+        .g-title { font-size: 18px; font-weight: 700; color: #fff; transform: translateY(10px); transition: transform 0.3s ease 0.1s; }
+        
+        .gallery-item:hover .g-cat, .gallery-item:hover .g-title { transform: translateY(0); }
+
+        .hidden { display: none; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+    
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Photo Gallery</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Campus Life</span>
+                <span>/</span>
+                <span>Gallery</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="gallery-section">
+        <div class="container">
+            
+            <div class="gallery-filters fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="campus">Campus</button>
+                <button class="filter-btn" data-filter="events">Events & Seminars</button>
+                <button class="filter-btn" data-filter="labs">Laboratories</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+            </div>
+
+            <div class="gallery-grid fade-up delay-100" id="gallery-grid">
+                
+                <!-- Campus -->
+                <div class="gallery-item" data-category="campus" data-src="assets/img/annual-day-2022-1.jpg">
+                    <img src="assets/img/annual-day-2022-1.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Campus</span>
+                        <h3 class="g-title">Main College Building</h3>
+                    </div>
+                </div>
+                
+                <!-- Labs -->
+                <div class="gallery-item" data-category="labs" data-src="assets/img/pharmaceitcs_lab.jpg">
+                    <img src="assets/img/pharmaceitcs_lab.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Laboratories</span>
+                        <h3 class="g-title">Pharmaceutics Lab</h3>
+                    </div>
+                </div>
+
+                <!-- Events -->
+                <div class="gallery-item" data-category="events" data-src="assets/img/workshop-2022-5.jpg">
+                    <img src="assets/img/workshop-2022-5.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Events</span>
+                        <h3 class="g-title">Annual Day Celebrations</h3>
+                    </div>
+                </div>
+
+                <!-- Campus -->
+                <div class="gallery-item" data-category="campus" data-src="assets/img/alumnimeet.jpg">
+                    <img src="assets/img/alumnimeet.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Campus</span>
+                        <h3 class="g-title">Lush Green Campus</h3>
+                    </div>
+                </div>
+
+                <!-- Sports -->
+                <div class="gallery-item" data-category="sports" data-src="assets/img/yoga-day-2022-pics-2.jpg">
+                    <img src="assets/img/yoga-day-2022-pics-2.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Sports</span>
+                        <h3 class="g-title">Cricket Tournament</h3>
+                    </div>
+                </div>
+
+                <!-- Labs -->
+                <div class="gallery-item" data-category="labs" data-src="assets/img/CIL.jpg">
+                    <img src="assets/img/CIL.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Laboratories</span>
+                        <h3 class="g-title">Central Instrumentation Room</h3>
+                    </div>
+                </div>
+                
+                <!-- Events -->
+                <div class="gallery-item" data-category="events" data-src="assets/img/NPW-2021-2.jpg">
+                    <img src="assets/img/NPW-2021-2.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Events</span>
+                        <h3 class="g-title">National Pharmacy Week</h3>
+                    </div>
+                </div>
+
+                <!-- Campus -->
+                <div class="gallery-item" data-category="campus" data-src="assets/img/Library.jpg">
+                    <img src="assets/img/Library.jpg" class="g-img" alt="Gallery Image">
+                    <div class="gallery-overlay">
+                        <span class="g-cat">Campus</span>
+                        <h3 class="g-title">Central Library</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+</body>
+</html>

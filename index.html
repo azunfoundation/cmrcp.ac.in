@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMR College of Pharmacy (CMRCP) | Shaping Pharmacy Leaders</title>
+    <meta name="description" content="CMR College of Pharmacy, established in 2005. NBA accredited, PCI approved, NIRF Rank Band 101-125. Shaping future pharmacy leaders in Telangana.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Inline styles for page-specific elements that don't need to be in global style.css -->
+    <style>
+        /* Homepage Specific Styles */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            padding-top: var(--header-h);
+            overflow: hidden;
+        }
+        .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+        .hero-bg-photo { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,27,62,0.85) 0%, rgba(26,45,90,0.8) 100%); z-index: 1; }
+        .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: 1; }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 100px;
+            background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3);
+            color: var(--orange-light); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(249,115,22,0.7); } 70% { box-shadow: 0 0 0 10px rgba(249,115,22,0); } 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); } }
+        
+        .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+        .hero-desc { font-size: 18px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 40px; max-width: 500px; }
+        .hero-actions { display: flex; gap: 16px; margin-bottom: 48px; }
+        
+        .hero-stats-bar { display: flex; gap: 32px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
+        .hero-stat { display: flex; flex-direction: column; }
+        .hero-stat-num { font-size: 28px; font-weight: 800; color: #fff; }
+        .hero-stat-num span { color: var(--orange-light); }
+        .hero-stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+        .hero-cards { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .hero-main-card { padding: 40px; width: 100%; max-width: 420px; z-index: 2; position: relative; }
+        .hero-main-card h3 { font-size: 24px; margin-bottom: 8px; }
+        .hero-main-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+        
+        .hero-float-card { position: absolute; z-index: 3; background: #fff; border-radius: var(--radius-md); padding: 16px 24px; box-shadow: var(--shadow-md); color: var(--navy); animation: float 6s ease-in-out infinite; }
+        .hf-1 { bottom: 10%; left: -10%; }
+        .hf-2 { top: 20%; right: -5%; animation-delay: 3s; }
+        .hf-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .hf-val { font-size: 20px; font-weight: 800; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* Stats Section */
+        .stats-section { background: var(--navy-mid); padding: 60px 24px; border-bottom: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .stat-box { text-align: center; padding: 32px; border-radius: var(--radius-md); background: rgba(255,255,255,0.03); border: 1px solid var(--border); transition: var(--transition); }
+        .stat-box:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); transform: translateY(-5px); }
+        .stat-number-wrap { font-size: 48px; font-weight: 900; color: #fff; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+        .stat-number-wrap span { color: var(--orange); }
+        .stat-text { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* About Preview */
+        .about-preview { background: var(--navy); }
+        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+        .about-img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+        .about-img-wrap::after { display: none; }
+        .about-features { list-style: none; margin: 32px 0; }
+        .about-features li { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+        .about-features li .icon { width: 32px; height: 32px; background: rgba(249,115,22,0.1); color: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; }
+        .about-features li div h4 { font-size: 16px; margin-bottom: 4px; }
+        .about-features li div p { font-size: 14px; color: var(--text-muted); }
+
+        /* Programs */
+        .programs-section { background: var(--navy-mid); }
+        .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+        .prog-card { padding: 40px 32px; display: flex; flex-direction: column; }
+        .prog-card h3 { font-size: 24px; font-family: 'Cormorant Garamond', serif; margin-bottom: 16px; color: var(--orange-light); }
+        .prog-details { margin-bottom: 32px; flex: 1; }
+        .prog-details p { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .prog-link { font-size: 14px; font-weight: 700; color: #fff; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); margin-top: auto; }
+        .prog-link:hover { color: var(--orange); gap: 12px; }
+
+        /* Highlights */
+        .highlights-section { background: linear-gradient(135deg, #0f172a 0%, var(--navy) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .hl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .hl-item { display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.03); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .hl-item .icon { width: 48px; height: 48px; background: rgba(34,197,94,0.1); color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .hl-item p { font-size: 15px; font-weight: 500; }
+
+        /* Rankings */
+        .rankings-section { background: var(--navy); }
+        .rank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+        .rank-card { text-align: center; padding: 40px 24px; border-top: 3px solid transparent; }
+        .rank-card:hover { border-top-color: var(--orange); }
+        .rank-source { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+        .rank-val { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 12px; font-family: 'Cormorant Garamond', serif; }
+        .rank-desc { font-size: 13px; color: var(--text-muted); }
+
+        /* Placements */
+        .place-section { background: var(--navy-mid); }
+        .place-stats { display: flex; gap: 24px; margin-bottom: 48px; }
+        .place-stat { flex: 1; background: var(--navy); padding: 32px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border); }
+        .place-stat-val { font-size: 36px; font-weight: 800; color: var(--orange-light); margin-bottom: 8px; }
+        .place-stat-lbl { font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); }
+        
+        .marquee-wrapper { background: rgba(255,255,255,0.02); padding: 32px 0; border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; display: flex; position: relative; }
+        .marquee-wrapper::before, .marquee-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; }
+        .marquee-wrapper::before { left: 0; background: linear-gradient(to right, var(--navy-mid), transparent); }
+        .marquee-wrapper::after { right: 0; background: linear-gradient(to left, var(--navy-mid), transparent); }
+        .marquee-content { display: flex; gap: 40px; animation: scroll-left 20s linear infinite; white-space: nowrap; padding-left: 40px; }
+        .marquee-item { font-size: 20px; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
+        .marquee-item:hover { color: #fff; }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* News & Tour */
+        .news-tour { display: grid; grid-template-columns: 1fr 1fr; }
+        .news-col { background: var(--navy); padding: 80px 10%; }
+        .tour-col { background: linear-gradient(135deg, var(--orange), #ea580c); padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+        .tour-col h2 { font-size: 40px; font-family: 'Cormorant Garamond', serif; color: #fff; margin-bottom: 24px; line-height: 1.2; }
+        .tour-col p { font-size: 18px; color: rgba(255,255,255,0.9); margin-bottom: 32px; }
+        
+        .news-list { list-style: none; margin-top: 32px; }
+        .news-list li { padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+        .news-date { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+        .news-date span:first-child { font-size: 20px; font-weight: 800; color: var(--orange-light); line-height: 1; }
+        .news-date span:last-child { font-size: 11px; text-transform: uppercase; color: var(--text-muted); }
+        .news-title { font-size: 15px; color: rgba(255,255,255,0.9); transition: var(--transition); }
+        .news-list li:hover .news-title { color: var(--orange); }
+
+        @media (max-width: 992px) {
+            .hero-content, .about-grid, .hl-grid, .news-tour { grid-template-columns: 1fr; }
+            .hero-cards { display: none; }
+            .prog-grid { grid-template-columns: 1fr; }
+            .rank-grid { grid-template-columns: repeat(2, 1fr); }
+            .place-stats { flex-direction: column; }
+        }
+        @media (max-width: 600px) {
+            .stats-grid, .rank-grid { grid-template-columns: 1fr; }
+            .hero-stats-bar { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    
+    <!-- HEADER -->
+    
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-label">Latest</div>
+        <div class="ticker-marquee">
+            <div class="ticker-content">
+                <span>Admissions Open 2025–26</span>
+                <span>NIRF 2025 Rank Band 101-125 (Pharmacy)</span>
+                <span>B.Pharmacy NBA Accredited</span>
+                <span>GPAT/NIPER Top Ranks Achieved</span>
+                <span>Excellent Placements with Top Pharma Companies</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <style>
+        .hero-centered {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: url('assets/img/bck.jpg') center/cover no-repeat;
+            text-align: center;
+            padding: 120px 24px;
+        }
+        .hero-centered::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(13,27,62,0.85) 0%, rgba(13,27,62,0.95) 100%);
+            z-index: 1;
+        }
+        .hero-centered-content {
+            position: relative; z-index: 2; max-width: 900px; width: 100%;
+        }
+        .hero-centered-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(48px, 6vw, 72px);
+            font-weight: 900; line-height: 1.1; margin-bottom: 24px;
+            color: #fff; text-transform: uppercase; letter-spacing: -1px;
+        }
+        .hero-centered-desc {
+            font-size: 22px; color: rgba(255,255,255,0.9); margin-bottom: 48px; font-weight: 300;
+        }
+        .hero-centered-actions {
+            display: flex; gap: 20px; justify-content: center;
+        }
+        .pharmacy-focus-section {
+            background: #ffffff; padding: 100px 24px; color: var(--navy); text-align: center;
+        }
+        .focus-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 60px auto 0;
+        }
+        .focus-card {
+            background: #f8fafc; padding: 40px; border-radius: 100px 100px 16px 16px; border: 1px solid #e2e8f0;
+            transition: var(--transition); box-shadow: var(--shadow-sm);
+        }
+        .focus-card:hover { transform: translateY(-10px); border-color: var(--orange); box-shadow: var(--shadow-md); }
+        .focus-card .icon-wrap {
+            width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border: 2px solid var(--orange); color: var(--orange); box-shadow: 0 10px 20px rgba(249,115,22,0.1);
+        }
+        .focus-card h3 { font-size: 22px; font-family: 'Playfair Display', serif; margin-bottom: 16px; color: var(--navy); }
+        .focus-card p { color: #64748b; font-size: 15px; }
+        </style>
+    <section class="hero-centered">
+        <div class="hero-centered-content fade-up">
+            <div class="hero-badge" style="margin-bottom: 32px; font-size:14px; background: rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff;">
+                <span class="hero-badge-dot" style="background:var(--green);"></span>
+                NBA Accredited Pharmacy Programs
+            </div>
+            <h1 class="hero-centered-title">CMR College of <span class="text-gradient">Pharmacy</span></h1>
+            <p class="hero-centered-desc">A legacy of excellence since 2005. Shaping the next generation of pharmacists and researchers in a state-of-the-art campus.</p>
+            <div class="hero-centered-actions">
+                <a href="admissions.html" class="btn-primary" style="padding: 16px 36px; font-size: 16px;">Apply Now</a>
+                <a href="programs.html" class="btn-secondary" style="padding: 16px 36px; font-size: 16px;">View Programs</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pharmacy-focus-section">
+        <div class="container">
+            <span class="section-label" style="color:var(--orange);">Why CMRCP?</span>
+            <h2 class="section-title" style="color:var(--navy);">Dedicated Exclusively to<br><span style="color:var(--orange);">Pharmaceutical Sciences</span></h2>
+            
+            <div class="focus-grid">
+                <div class="focus-card fade-up">
+                    <div class="icon-wrap"><i data-lucide="flask-conical" style="width:40px;height:40px;"></i></div>
+                    <h3>Advanced Research Labs</h3>
+                    <p>Equipped with state-of-the-art analytical instruments and pilot plant facilities to foster cutting-edge research in drug discovery and formulation.</p>
+                </div>
+                <div class="focus-card fade-up delay-100">
+                    <div class="icon-wrap"><i data-lucide="briefcase-medical" style="width:40px;height:40px;"></i></div>
+                    <h3>Hospital Tie-ups</h3>
+                    <p>Clinical pharmacy training in collaboration with multi-specialty hospitals ensuring robust real-world healthcare exposure for Pharm.D students.</p>
+                </div>
+                <div class="focus-card fade-up delay-200">
+                    <div class="icon-wrap"><i data-lucide="award" style="width:40px;height:40px;"></i></div>
+                    <h3>Top Tier Placements</h3>
+                    <p>Consistent record of placing graduates in leading pharmaceutical companies like Divis, Hetero, and Aurobindo with excellent packages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS COUNTER -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-box fade-up">
+                <div class="stat-number-wrap"><span class="stat-number" data-target="2000">0</span>+</div>
+                <div class="stat-text">Students Enrolled</div>
+            </div>
+            <div class="stat-box fade-up delay-100">
+                <div class="stat-number-wrap"><span class="stat-number" data-target="150">0</span>+</div>
+                <div class="stat-text">Expert Faculty</div>
+            </div>
+            <div class="stat-box fade-up delay-200">
+                <div class="stat-number-wrap"><span class="stat-number" data-target="250">0</span>+</div>
+                <div class="stat-text">Placements 2024</div>
+            </div>
+            <div class="stat-box fade-up delay-300">
+                <div class="stat-number-wrap"><span class="stat-number" data-target="30">0</span>+</div>
+                <div class="stat-text">Industry MOUs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT PREVIEW -->
+    <section class="about-preview">
+        <div class="container about-grid">
+            <div class="about-img-wrap fade-right" style="order: 2; border-radius: 10px; transform: rotate(2deg); box-shadow: -20px 20px 0 var(--orange);">
+                <img src="assets/img/bck.jpg" alt="Campus Image" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="about-text fade-left" style="order: 1; padding-right: 40px;">
+                <span class="section-label">Who We Are</span>
+                <h2 class="section-title">Welcome to <br><span>CMR College of Pharmacy</span></h2>
+                <p class="section-desc">Established in 2005 under the MGR Educational Society, CMRCP has grown into one of the most preferred institutions for pharmacy education in Telangana. Our state-of-the-art campus provides the perfect environment for academic excellence and research innovation.</p>
+                
+                <ul class="about-features">
+                    <li>
+                        <div class="icon"><i data-lucide="microscope"></i></div>
+                        <div>
+                            <h4>Research & Innovation</h4>
+                            <p>Advanced laboratories and SIRO recognition promoting cutting-edge pharmaceutical research.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon"><i data-lucide="handshake"></i></div>
+                        <div>
+                            <h4>Industry Connect</h4>
+                            <p>Strong ties with top pharmaceutical companies for training and placements.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon"><i data-lucide="landmark"></i></div>
+                        <div>
+                            <h4>World-Class Campus</h4>
+                            <p>Smart classrooms, CPCSEA approved animal house, and in-campus hostels.</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="about.html" class="btn-primary">Know More About Us →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS OFFERED -->
+    <section class="programs-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-label">Academics</span>
+                <h2 class="section-title">Programs <span>Offered</span></h2>
+                <p class="section-desc" style="margin: 0 auto;">Comprehensive pharmacy programs designed to build industry-ready professionals.</p>
+            </div>
+            
+            <div class="prog-grid">
+                <div class="glass-card prog-card fade-up">
+                    <h3>B.Pharmacy</h3>
+                    <div class="prog-details">
+                        <p><span>Duration</span> <span>4 Years</span></p>
+                        <p><span>Level</span> <span>Undergraduate</span></p>
+                        <p><span>Eligibility</span> <span>10+2 / EAMCET</span></p>
+                        <p style="border:none; color:var(--green); font-weight:600; margin-top:16px;">NBA Accredited Program</p>
+                    </div>
+                    <a href="programs.html" class="prog-link">View Details →</a>
+                </div>
+                
+                <div class="glass-card prog-card fade-up delay-100">
+                    <h3>M.Pharmacy</h3>
+                    <div class="prog-details">
+                        <p><span>Duration</span> <span>2 Years</span></p>
+                        <p><span>Level</span> <span>Postgraduate</span></p>
+                        <p><span>Specializations</span> <span>3 Available</span></p>
+                        <ul style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.7); padding-left:16px; list-style:circle;">
+                            <li>Pharmaceutics</li>
+                            <li>Pharmaceutical Analysis</li>
+                            <li>Pharmacology</li>
+                        </ul>
+                    </div>
+                    <a href="programs.html" class="prog-link">View Details →</a>
+                </div>
+
+                <div class="glass-card prog-card fade-up delay-200">
+                    <h3>Pharm.D</h3>
+                    <div class="prog-details">
+                        <p><span>Duration</span> <span>6 Years</span></p>
+                        <p><span>Level</span> <span>Doctoral / Integrated</span></p>
+                        <p><span>Eligibility</span> <span>10+2 / EAMCET</span></p>
+                        <p style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.7);">Doctor of Pharmacy program focusing on clinical pharmacy and patient care.</p>
+                    </div>
+                    <a href="programs.html" class="prog-link">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">Why Choose <span>CMRCP?</span></h2>
+            <div class="hl-grid fade-up">
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>15+ years of outstanding Pharmacy education</p></div>
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>One amongst very few NBA accredited pharma colleges in Telangana</p></div>
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>MOUs with various industries and CPCSEA approved animal house</p></div>
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>UGC 12B, 2f and SIRO recognitions</p></div>
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>In-campus residential accommodation and Transport facility</p></div>
+                <div class="hl-item"><div class="icon"><i data-lucide="check-circle" style="color: var(--green); width: 18px;"></i></div><p>Smart Classrooms with continuous student monitoring and mentoring</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RANKINGS -->
+    <section class="rankings-section">
+        <div class="container">
+            <span class="section-label">Excellence</span>
+            <h2 class="section-title">Rankings & <span>Achievements</span></h2>
+            
+            <div class="rank-grid">
+                <div class="glass-card rank-card fade-up">
+                    <div class="rank-source">NIRF 2025</div>
+                    <div class="rank-val">Band 101-125</div>
+                    <div class="rank-desc">Among top Pharmacy colleges in India</div>
+                </div>
+                <div class="glass-card rank-card fade-up delay-100">
+                    <div class="rank-source">NBA</div>
+                    <div class="rank-val">Accredited</div>
+                    <div class="rank-desc">B.Pharmacy program accredited</div>
+                </div>
+                <div class="glass-card rank-card fade-up delay-200">
+                    <div class="rank-source">PCI & AICTE</div>
+                    <div class="rank-val">Approved</div>
+                    <div class="rank-desc">Recognized by statutory bodies</div>
+                </div>
+                <div class="glass-card rank-card fade-up delay-300">
+                    <div class="rank-source">JNTUH</div>
+                    <div class="rank-val">Affiliated</div>
+                    <div class="rank-desc">Permanent affiliation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLACEMENTS -->
+    <section class="place-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <span class="section-label">Careers</span>
+                <h2 class="section-title">Outstanding <span>Placements</span></h2>
+            </div>
+            
+            <div class="place-stats fade-up">
+                <div class="place-stat">
+                    <div class="place-stat-val">250+</div>
+                    <div class="place-stat-lbl">Placements in 2024</div>
+                </div>
+                <div class="place-stat">
+                    <div class="place-stat-val">₹6 LPA</div>
+                    <div class="place-stat-lbl">Average Package</div>
+                </div>
+                <div class="place-stat">
+                    <div class="place-stat-val">30+</div>
+                    <div class="place-stat-lbl">Top Recruiters</div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 24px; font-size: 20px;">Top Companies Recruiting Our Students</h3>
+            <div class="marquee-wrapper fade-up delay-100">
+                <div class="marquee-content">
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_1.jpg" alt="Recruiter 1"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_2.jpg" alt="Recruiter 2"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_3.jpg" alt="Recruiter 3"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_4.jpg" alt="Recruiter 4"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_5.jpg" alt="Recruiter 5"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_6.jpg" alt="Recruiter 6"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_7.jpg" alt="Recruiter 7"></div>
+                    <div class="marquee-logo-card"><img src="assets/img/recruiter_8.jpg" alt="Recruiter 8"></div>
+                    <!-- Cloned items for infinite loop will be appended via JS -->
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="placements.html" class="btn-primary">View Full Placement Details →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS & TOUR -->
+    <div class="news-tour">
+        <div class="news-col fade-right">
+            <span class="section-label">Updates</span>
+            <h2 class="section-title">News & <span>Events</span></h2>
+            <ul class="news-list">
+                <li>
+                    <div class="news-date"><span>15</span><span>Apr</span></div>
+                    <a href="#" class="news-title">Admissions notification released for B.Pharmacy 2025-26 academic year.</a>
+                </li>
+                <li>
+                    <div class="news-date"><span>02</span><span>Mar</span></div>
+                    <a href="#" class="news-title">CMRCP ranked in NIRF Band 101-125 for the year 2025.</a>
+                </li>
+                <li>
+                    <div class="news-date"><span>28</span><span>Feb</span></div>
+                    <a href="#" class="news-title">National level seminar on "Recent Advances in Pharmaceutical Sciences".</a>
+                </li>
+                <li>
+                    <div class="news-date"><span>10</span><span>Feb</span></div>
+                    <a href="#" class="news-title">Campus placement drive by Dr. Reddy's Laboratories - 25 students placed.</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tour-col fade-left">
+            <h2>Experience our <br>world-class campus</h2>
+            <p>Take a virtual walk through our smart classrooms, advanced laboratories, and lush green environment.</p>
+            <a href="#" class="btn-outline" style="border-color: #fff; background: transparent;">Take a Virtual Tour →</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

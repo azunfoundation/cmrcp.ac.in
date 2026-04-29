@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Lectures | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ===== INNER PAGE CONTENT STYLES ===== */
+        .inner-content-wrap {
+            background: var(--navy);
+            min-height: 60vh;
+            padding: 64px 0 80px;
+        }
+        .inner-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Profile card layout */
+        .profile-layout {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+        .profile-img-col {
+            flex-shrink: 0;
+            width: 200px;
+            text-align: center;
+        }
+        .profile-img-col img {
+            width: 180px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            border: 3px solid var(--orange);
+        }
+        .profile-text-col { flex: 1; }
+        .profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .profile-designation {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--orange-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        .profile-bio {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+        }
+
+        /* Data table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+        }
+        .data-table th {
+            background: rgba(249,115,22,0.15);
+            color: var(--orange-light);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        /* Generic text content */
+        .page-text-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 48px;
+            margin-bottom: 32px;
+        }
+        .page-text-section p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .page-text-section h2, .page-text-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--orange-light);
+            font-size: 28px;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        .page-text-section ul, .page-text-section ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        .page-text-section li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 8px;
+        }
+
+        /* Gallery image grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .gallery-grid img:hover { transform: scale(1.03); border-color: var(--orange); }
+
+        /* Committee member card */
+        .committee-section {
+            margin-bottom: 40px;
+        }
+        .committee-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: var(--orange-light);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Fix old WP classes */
+        .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+        .flex-col { flex: 1; min-width: 200px; }
+        .text-orange { color: var(--orange-light) !important; }
+        .text-bold { font-weight: 700; }
+        .content-block { margin-bottom: 24px; }
+
+        /* Inline images from content */
+        .inner-content-wrap img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin: 16px 0;
+        }
+        .inner-content-wrap table { width: 100%; }
+        .inner-content-wrap table th, .inner-content-wrap table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+        .inner-content-wrap table th {
+            background: rgba(249,115,22,0.12);
+            color: var(--orange-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .inner-content-wrap table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        @media (max-width: 768px) {
+            .profile-layout { flex-direction: column; }
+            .profile-img-col { width: 100%; }
+            .page-text-section { padding: 24px; }
+            .inner-container { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Guest Lectures</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Guest Lectures</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="inner-content-wrap">
+        <div class="inner-container">
+            <div class="page-text-section">
+                
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-32668ea elementor-section-boxed elementor-section-height-default elementor-section-height-default">
+						<div>
+					<div>
+			<div>
+						<div>
+				<div class="content-block">
+									<h2>GUEST LECTURES</h2>
+<table class="f-16 lato tbl">
+<thead>
+<tr>
+<th style="width: 114px;"><span style="font-family: Arial,Helvetica,sans-serif;">Date</span></th>
+<th style="width: 795px;"><span style="font-family: Arial,Helvetica,sans-serif;">Resource person/ Guest lecture by</span></th>
+<th style="width: 257px;"><span style="font-family: Arial,Helvetica,sans-serif;">Guest lecture Title</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26-06-2025</td>
+<td>K. Jaya Deva Rao, International speaker and HRD trainer</td>
+<td>Communication Skills</td>
+</tr>
+
+<tr>
+<td>07-02-2024</td>
+<td>Mr. Nick Vujicic, Australian-American evangelist and motivational speaker</td>
+<td>Motivational Speech</td>
+</tr>
+
+<tr>
+<td>07-06-2024</td>
+<td>Prof. Jaya Deva Rao, International speaker and HRD trainer</td>
+<td>Personality Development Programme on Vision &#038; Success</td>
+</tr>
+
+<tr>
+<td>23-09-2024</td>
+<td>Dr. K. Ram, Pharmacovigilance Scientist, Clinoxy Solutions Pvt. Ltd</td>
+<td>Building ADR Reporting Culture for Patient Safety</td>
+</tr>
+
+<tr>
+<td>26-11-2024</td>
+<td>Prof. M. L. Sai Kumar, Motivational Speaker &#038; HRD Trainer, Ex-Professor, Osmania University, Hyderabad</td>
+<td>Positive Attitude and Discipline</td>
+</tr>
+
+<tr>
+<td>03-12-2024</td>
+<td>Dr. Nandini Manne, Associate Dean, School of Pharmacy, Marshall University, USA</td>
+<td>Career Guidance in USA</td>
+</tr>
+
+<tr>
+<td>23-12-2024</td>
+<td>Dr. Karthik Rakam, CEO, Avenida Innovations, Hyderabad</td>
+<td>Implementation of Research</td>
+</tr>
+
+
+<tr>
+<td>02-02-2023</td>
+<td>Prof. M. L. Sai Kumar, Motivational Speaker &#038; HRD Trainer, Ex-Professor, Osmania University, Hyderabad</td>
+<td>Personality Development</td>
+</tr>
+
+<tr>
+<td>14-07-2023</td>
+<td>S. K. Jayadeva Rao, International Motivational Speaker</td>
+<td>Attitude</td>
+</tr>
+
+<tr>
+<td>04-08-2023</td>
+<td>Dr. Manoj Matnani, Consultant Pediatric Nephrologist, VIHASA INDIA</td>
+<td>A Spiritual Approach: Values in Health Care</td>
+</tr>
+
+<tr>
+<td>17-10-2023</td>
+<td>Prof. M. L. Sai Kumar, Motivational Speaker &#038; HRD Trainer, Ex-Professor, Osmania University, Hyderabad</td>
+<td>Personality Development</td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">22-06-2022 </span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof TirumalaReddy,
+Motivational speaker and HRD trainer</span></span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">“Personal effectiveness” </span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">05-01-2022 </span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof.K.S.K.Jayadev
+rao,Motivational speaker and HRD trainer
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">“Goals and attitude”</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">20-03-2021</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Professor ML Sai Kumar.
+Ex- Professor, Osmanis University, Hyderabad
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">“Goal Setting”</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">13-02-2020</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Hari Anupama, MBBS, DGO, MD (Ob&amp;G), DNB, Ph D.
+Professor &amp; Head, Department of Obs &amp; Gynecology,
+Mallareddy Medical College for Women, Suraram, Hyderabad
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Polycystic ovarian syndrome (PCOS)</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">09-11-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Mr. Yeshwanth
+Global Tree, Foreign Academic correspondent,
+Hyderabad
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Opportunities in foreign universities</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">26-10-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Sai Krishna Gudi
+B. Pharm, Pharm D (PB), MS, Ph D (Canada).
+Research Fellow, University of Manitoba, Canada
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Systemic Review</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">09-09-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Professor ML Sai Kumar
+Ex- Professor, Osmanis University, Hyderabad
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Discipline: A key to Success</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">06-09-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Sri Vinay Ji
+Motivator and Life Skill teacher, Hyderabad
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Art of Self Management </span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">22-4-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. J. Sangeetha,
+Prof., Malla Reddy Institute of Pharmaceutical Sciences
+</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Advances in Plant Tissue Culture</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">1-4-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Maheswar Reddy B., CEO- Co valent Tech</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Job prospects in Clinical Research and Clinical Data Management </span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">15-2-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof. M.L. Sai Kumar, Retired Professor, Osmania University</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Discipline-A key to success in life </span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">11-2-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Sachin Devi, Ph D</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">The Success Mindset and New Career Avenues For Pharmacy Students</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">8-2-2019</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Hari Anupama. MD Professor &amp; Head, Department of Obs &amp; Gynecology, ESIC Medical College and Hospital, Sanath Nagar, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Thyroid Disorders in Pregnant Women</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">03-11-2018 </span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. V. Sai Divya, MBBS, MD (Anesthesiology &amp; Critical Care) Assistant Professor Department of Anesthesiology, Malla Reddy Medical College for Women, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Latest anesthetic drug: Dexmedtomidine</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">09-09-2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Ms. Deborah Yeshwanth, MBA,Sr. Manager,Aquila College of Medical Scribe, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Medical Scribe: Rehumanising Health Care</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">21-08-2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. B. Valya, MS (Ortho) Professor &amp; Head Department of Orthopedic, Gandhi Medical College &amp; Hospital, Secunderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Gout</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">13-8-2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. D. Bikshapathi, M. Pharm, Ph. D Professor &amp; Head, Department of Pharmaceutics, Vijaya College of Pharmacy, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Nanoparticle drug delivery systems</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">30-7-2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. A. Ramesh, M. Pharm, Ph DProfessor &amp; Principal,Vishnu Institute of Pharmaceutical Education and Research,Narsapur, Hyderabad.</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Use of Cell line for Pharmacological study</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">09-07-2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Rammohan Gupta, M. Pharm, Ph D.Professor &amp; Principal,Pulla Reddy Institute of Pharmacy, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Herbal Drug Standardizations</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">8<sup>th</sup> January 2018</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Rajeswari.  M. Pharm, Ph D. Professor, Department of Pharmaceutical Analysis, Pulla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">cGMP Quality control testing</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">14<sup>th</sup> December 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. KS Murali Krishna, M. Pharm, Ph D. Professor &amp; Principal, MLR Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Drug and substance abuse</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">4<sup>th</sup> December 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. M Adharvana Chary Director, Dr. MAC Pharma Bio Ltd, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Overview of Instrumentation</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">20<sup>th</sup> November 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof. ML Sai Kumar, Ex-Chairman, CSI, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Innovative approach to life</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">19<sup>th</sup> August 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. S. Sridhar.  M. Pharm. Ph D. Associate Professor, Department of pharmaceutical Chemistry, Malla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Biotechnology in the Production of Pharmaceutical Industry Ingredients: Amino Acids</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">18<sup>th</sup> July 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. B Valya, MS (Ortho) Prof &amp; Head, Dept of Orthopedics, Gandhi Medical College and Hospital, Sec’bad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Overview of Osteoporosis</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">16th March 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Mr. T Jaypal Reddy, MBA. Director, St. Peter’s Institute of Pharmacy, Warangal</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Role of Pharmacist in patient care</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">25th February 2017</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. N Srinivas. M. Pharm. Ph D. Professor &amp; Principal, Malla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Antihypertensive formulations</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">16th Dec 2016</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Adepu Ramesh. M. Pharm. Ph D. Professor &amp; Principal, Vikash College of Pharmaceutical Science, Suryapet</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Various Mobile App to improve learning</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">3rd November 2016</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof. Dr. Satyabrata Bhanja. M. Pharm. Ph D. Professor , Department of Pharmaceutics, Malla Reddy College of Pharmacy, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Nano emulsion in new drug delivery systems</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">19th September 2016</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. C Parthiban. M. Pharm. Ph D. Associate Professor, Department of Pharmaceutical Analysis, Malla Reddy College of Pharmacy, Hyderabad Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">QBD in analytical method development</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">21st July 2016</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. B Ravindra Babu. M. Pharm, Ph D. Associate Professor, Department of Pharmaceutics, Pulla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Microsphere and its application in pharmaceutical dosage forms</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">12th March 2015</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. VP Ramana, MS (Gen Sur), MS (Ortho) Professor,  Dept of Orthopedics, Malla Reddy Inst. of Medical Sc.Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Antibiotic prophylaxis for surgical site Infection</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">4th Feb 2015</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Mr. Prasad Thirunagaru, Ex- Col, US Army, California, USA</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Empower Indian Pharmacist</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">31st Jan 2015</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. P David Anand,  MD (Gen Med) Director, Hope Hospital, Medchal</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Guest Lecture on Cardiovascular Disease</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">20th Nov 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Hari Anupama, MD, DGO, DNB, Ph D Professor, Dept. of Gynecology, Gandhi Medical College and Hospital, Sec’bad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Preeclampsia</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">1st November 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. V Ram Mohan Gupta. M. Pharm. Ph D Professor &amp; Principal, Pulla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Herbal Drug Standardizations</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">11th October 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. GS Sharma. M. Pharm, Ph D. Professor, department of Pharmaceutics, Malla Reddy Institute of Pharmaceutical Sciences, Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Latest developments in Antiepileptic therapy</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">15th September 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Daleep Sai Vittal, MD(Gen Med), Dept of Medicine, Malla Reddy Inst. of Medical Sc.Hyderabad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Guest Lecture on Myocardial Infarction</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">18th August 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. P Sharavan Kumar. MD, DM (Gastro) Professor and Head, Department of Gastroenterology, Gandhi Hospital, Sec’bad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Peptic Ulcer Disease</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">25th July 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Prof. Durragh Murnane, Professor, School of Life and Medical Sciences, University of Hertfordshire, UK</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Target Release drug delivery system for Asthma Patients</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">18th June 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. B Valya, MS (Ortho) Professor, Dept of Orthopedics, Gandhi Medical College and Hospital, Sec’bad</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Rheumatic Arthritis</span></span></td>
+</tr>
+<tr>
+<td style="width: 114px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">14th June 2014</span></span></td>
+<td style="width: 795px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">Dr. Ramesh Gannu. M. Pharm, Ph D</span></span></td>
+<td style="width: 257px;"><span style="font-size: 12px;"><span style="font-family: Arial,Helvetica,sans-serif;">In vitro – In vivo correlation studies</span></span></td>
+</tr>
+</tbody>
+</table>								</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+		
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+</body>
+</html>

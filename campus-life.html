@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .cl-layout { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+        
+        .cl-sidebar { position: sticky; top: calc(var(--header-h) + 40px); display: flex; flex-direction: column; gap: 8px; }
+        .cl-tab-btn { padding: 16px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: var(--radius-sm); text-align: left; color: rgba(255,255,255,0.7); font-weight: 600; font-size: 15px; transition: var(--transition); cursor: pointer; }
+        .cl-tab-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        .cl-tab-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); box-shadow: 0 4px 12px rgba(249,115,22,0.3); }
+
+        .cl-content { background: var(--navy); border-radius: var(--radius-lg); }
+        .cl-pane { display: none; animation: fadeIn 0.4s ease forwards; }
+        .cl-pane.active { display: block; }
+        
+        .cl-pane-header { margin-bottom: 32px; }
+        .cl-pane-title { font-size: 28px; font-family: 'Cormorant Garamond', serif; color: var(--orange-light); margin-bottom: 12px; }
+        .cl-pane-desc { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+        .accordion { display: flex; flex-direction: column; gap: 16px; }
+        .acc-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+        .acc-header { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(255,255,255,0.02); transition: var(--transition); }
+        .acc-header:hover { background: rgba(255,255,255,0.05); }
+        .acc-title { font-size: 16px; font-weight: 700; color: #fff; }
+        .acc-icon { font-size: 12px; transition: transform 0.3s ease; }
+        .acc-body { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .acc-item.open .acc-body { padding: 24px; max-height: 1000px; border-top: 1px solid var(--border); }
+        .acc-item.open .acc-icon { transform: rotate(180deg); }
+
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .data-table th { background: rgba(255,255,255,0.05); color: var(--orange-light); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .mou-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .mou-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 24px; border-radius: var(--radius-md); }
+        .mou-org { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .mou-purpose { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+        .mou-year { font-size: 12px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 992px) {
+            .cl-layout { grid-template-columns: 1fr; }
+            .cl-sidebar { position: relative; top: 0; flex-direction: row; flex-wrap: wrap; }
+            .cl-tab-btn { flex: 1; text-align: center; }
+            .mou-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a><a href="about.html">About College</a><a href="programs.html">Programs Offered</a><a href="admissions.html">Admissions</a><a href="placements.html">Placements</a><a href="research.html">R&D</a><a href="campus-life.html">Campus Life</a><a href="infrastructure.html">Infrastructure</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-label">Latest</div>
+        <div class="ticker-marquee">
+            <div class="ticker-content">
+                <span>Admissions Open 2025–26</span>
+                <span>NIRF 2025 Rank Band 101-125 (Pharmacy)</span>
+                <span>B.Pharmacy NBA Accredited</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Campus Life</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Campus Life</span>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container cl-layout">
+            
+            <div class="cl-sidebar fade-right">
+                <button class="cl-tab-btn active" data-target="committees">Committees & Cells</button>
+                <button class="cl-tab-btn" data-target="alumni">Alumni</button>
+                <button class="cl-tab-btn" data-target="mous">MOUs & Memberships</button>
+                <button class="cl-tab-btn" data-target="nss">NSS Activities</button>
+                <button class="cl-tab-btn" data-target="others">Others</button>
+            </div>
+
+            <div class="cl-content fade-left">
+                
+                <!-- COMMITTEES -->
+                <div id="committees" class="cl-pane active">
+                    <div class="cl-pane-header">
+                        <h2 class="cl-pane-title">Committees & Cells</h2>
+                        <p class="cl-pane-desc">Various committees are formed to ensure smooth functioning of the institution, address grievances, and provide a safe and conducive environment for students.</p>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="acc-item">
+                            <div class="acc-header">
+                                <span class="acc-title">Anti-Ragging Committee</span>
+                                <span class="acc-icon">▼</span>
+                            </div>
+                            <div class="acc-body">
+                                <p style="margin-bottom: 16px; font-size: 14px; color: var(--text-muted);">As per UGC guidelines, CMRCP has zero tolerance for ragging. The committee monitors and ensures a ragging-free campus.</p>
+                                <table class="data-table">
+                                    <tr><th>Name</th><th>Designation</th><th>Role</th></tr>
+                                    <tr><td>Dr. M. Nageswara Rao</td><td>Principal</td><td>Chairman</td></tr>
+                                    <tr><td>Mr. P. Rajesh</td><td>Assoc. Professor</td><td>Coordinator</td></tr>
+                                    <tr><td>Local Police Inspector</td><td>Inspector</td><td>Member</td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="acc-item">
+                            <div class="acc-header">
+                                <span class="acc-title">Women Protection Cell / ICC</span>
+                                <span class="acc-icon">▼</span>
+                            </div>
+                            <div class="acc-body">
+                                <p style="margin-bottom: 16px; font-size: 14px; color: var(--text-muted);">Internal Complaints Committee to prevent sexual harassment and ensure safety of women on campus.</p>
+                                <table class="data-table">
+                                    <tr><th>Name</th><th>Designation</th><th>Role</th></tr>
+                                    <tr><td>Dr. K. Srinivas</td><td>Professor</td><td>Chairman</td></tr>
+                                    <tr><td>Mrs. S. Swathi</td><td>Asst. Professor</td><td>Coordinator</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">
+                                <span class="acc-title">Grievances & Redressal Committee</span>
+                                <i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i>
+                            </div>
+                            <div class="acc-body">
+                                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Provides a mechanism for students and staff to raise grievances regarding academic or non-academic matters.</p>
+                            </div>
+                        </div>
+
+                        <div class="acc-item">
+                            <div class="acc-header">
+                                <span class="acc-title">Institutional Animal Ethics Committee (IAEC)</span>
+                                <i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i>
+                            </div>
+                            <div class="acc-body">
+                                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">CPCSEA approved committee to oversee and regulate experiments on animals.</p>
+                            </div>
+                        </div>
+
+                        <!-- Added Missing Committees -->
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Anti-Discrimination Cell</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Ensures a campus environment free from discrimination.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Disciplinary Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Maintains discipline and code of conduct among students.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">SC/ST Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Welfare and grievance redressal for SC/ST students and staff.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Library Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Advises on library policies, budget, and resource acquisitions.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Programme Assessment Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Assesses program outcomes and continuous improvement processes.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Program Advisory Board</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Provides industry and academic guidance for program curriculum.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Right To Information Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Handles RTI queries and compliance.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Purchase Committee</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Oversees procurement of equipment and materials.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Industry Institute Interaction Cell</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Fosters collaboration with pharma industries for training and projects.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Entrepreneurship Cell</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Encourages and supports student startups and innovation.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Career Guidance Cell</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Guides students for higher education and career paths.</p></div></div>
+                        <div class="acc-item"><div class="acc-header"><span class="acc-title">Gender Sensitization Cell</span><i data-lucide="chevron-down" class="chevron" style="width:14px; height:14px;"></i></div><div class="acc-body"><p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Promotes gender equality and awareness on campus.</p></div></div>
+                    </div>
+                </div>
+
+                <!-- ALUMNI -->
+                <div id="alumni" class="cl-pane">
+                    <div class="cl-pane-header">
+                        <h2 class="cl-pane-title">Alumni Association</h2>
+                        <p class="cl-pane-desc">The CMRCP Alumni Association aims to foster strong bonds between alumni, students, and the institute, facilitating networking and mentorship.</p>
+                    </div>
+
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 16px;">Alumni Board Members</h3>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin-bottom: 32px;">
+                        <table class="data-table">
+                            <tr><th>Name</th><th>Role</th><th>Batch</th></tr>
+                            <tr><td>Mr. K. Vamshi</td><td>President</td><td>2009-13</td></tr>
+                            <tr><td>Ms. R. Tejaswini</td><td>Vice President</td><td>2010-14</td></tr>
+                            <tr><td>Mr. P. Rajesh</td><td>General Secretary</td><td>2011-15</td></tr>
+                        </table>
+                    </div>
+
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 16px;">Graduated Students (Year-wise)</h3>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Click to view lists of our graduated batches.</p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn-outline">Batch 2019-2023</button>
+                        <button class="btn-outline">Batch 2018-2022</button>
+                        <button class="btn-outline">Batch 2017-2021</button>
+                        <button class="btn-outline">Batch 2016-2020</button>
+                    </div>
+                </div>
+
+                <!-- MOUs -->
+                <div id="mous" class="cl-pane">
+                    <div class="cl-pane-header">
+                        <h2 class="cl-pane-title">MOUs & Memberships</h2>
+                        <p class="cl-pane-desc">Collaborations with industry and research organizations to enhance practical exposure and training for students.</p>
+                    </div>
+
+                    <div class="mou-grid">
+                        <div class="mou-card">
+                            <div class="mou-org">Dr. Reddy's Laboratories</div>
+                            <div class="mou-purpose">Industrial Training & Placements</div>
+                            <div class="mou-year">Active since 2018</div>
+                        </div>
+                        <div class="mou-card">
+                            <div class="mou-org">Hetero Drugs Ltd</div>
+                            <div class="mou-purpose">Research Collaboration & Internships</div>
+                            <div class="mou-year">Active since 2019</div>
+                        </div>
+                        <div class="mou-card">
+                            <div class="mou-org">Apollo Hospitals</div>
+                            <div class="mou-purpose">Clinical Training for Pharm.D</div>
+                            <div class="mou-year">Active since 2017</div>
+                        </div>
+                        <div class="mou-card">
+                            <div class="mou-org">Indian Pharmaceutical Association (IPA)</div>
+                            <div class="mou-purpose">Institutional Membership</div>
+                            <div class="mou-year">Permanent</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NSS -->
+                <div id="nss" class="cl-pane">
+                    <div class="cl-pane-header">
+                        <h2 class="cl-pane-title">NSS Activities</h2>
+                        <p class="cl-pane-desc">The National Service Scheme (NSS) unit of CMRCP actively engages students in social service and community development programs.</p>
+                    </div>
+
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 24px;">
+                        <li style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <h4 style="color: var(--orange-light); font-size: 18px; margin-bottom: 8px;">Blood Donation Camps</h4>
+                            <p style="font-size: 14px; color: rgba(255,255,255,0.8);">Organized annually in collaboration with Red Cross Society, where students and staff actively donate blood.</p>
+                        </li>
+                        <li style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <h4 style="color: var(--orange-light); font-size: 18px; margin-bottom: 8px;">Health Awareness Campaigns</h4>
+                            <p style="font-size: 14px; color: rgba(255,255,255,0.8);">Pharmacy students conduct awareness drives on rational use of medicines, hygiene, and disease prevention in adopted villages.</p>
+                        </li>
+                        <li style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <h4 style="color: var(--orange-light); font-size: 18px; margin-bottom: 8px;">Haritha Haram (Plantation Drive)</h4>
+                            <p style="font-size: 14px; color: rgba(255,255,255,0.8);">Mass tree plantation programs within and outside the campus to promote environmental sustainability.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- OTHERS -->
+                <div id="others" class="cl-pane">
+                    <div class="cl-pane-header">
+                        <h2 class="cl-pane-title">Other Cells & Accolades</h2>
+                        <p class="cl-pane-desc">Important resources and highlights of CMRCP.</p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <h4 style="color: var(--orange-light); font-size: 18px; margin-bottom: 8px;">Achievements & Awards</h4>
+                            <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 12px;">Our students and faculty consistently win prestigious awards at national and international conferences.</p>
+                            <button class="btn-outline">View Achievements</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <h4 style="color: var(--orange-light); font-size: 18px; margin-bottom: 8px;">Grievance Cell Portal</h4>
+                            <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 12px;">A dedicated online portal for students to register and track their grievances securely.</p>
+                            <a href="#" class="btn-primary" style="display:inline-block;">Access Portal</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+</body>
+</html>

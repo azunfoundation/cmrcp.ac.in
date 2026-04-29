@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Details | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .pd-section { background: var(--navy); padding: 64px 0 80px; min-height: 60vh; }
+        
+        /* Accordion */
+        .pd-accordion { display: flex; flex-direction: column; gap: 16px; }
+        .pd-accordion-item { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+        .pd-accordion-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 28px; cursor: pointer;
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+            transition: var(--transition); user-select: none;
+        }
+        .pd-accordion-header:hover { background: linear-gradient(135deg, var(--navy-light), #2d4a7a); }
+        .pd-accordion-header.active { background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(249,115,22,0.1)); border-bottom: 1px solid var(--border); }
+        .pd-year-label { font-size: 16px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .pd-toggle-icon { width: 32px; height: 32px; background: rgba(249,115,22,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--orange-light); font-size: 18px; transition: var(--transition); flex-shrink: 0; }
+        .pd-accordion-header.active .pd-toggle-icon { transform: rotate(45deg); background: var(--orange); color: #fff; }
+        
+        .pd-accordion-body { display: none; padding: 24px 28px; background: rgba(0,0,0,0.15); }
+        .pd-accordion-body.show { display: block; }
+        
+        .pd-sub-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--orange-light); margin-bottom: 20px; }
+        
+        /* Table */
+        .pd-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .pd-table thead tr { background: rgba(249,115,22,0.15); }
+        .pd-table th { padding: 12px 16px; color: var(--orange-light); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; text-align: left; border-bottom: 1px solid var(--border); }
+        .pd-table td { padding: 10px 16px; color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .pd-table tr:last-child td { border-bottom: none; }
+        .pd-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .pd-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+        
+        /* Stat bar */
+        .pd-stat-bar { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+        .pd-stat { padding: 12px 20px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); border-radius: var(--radius-sm); }
+        .pd-stat-num { font-size: 24px; font-weight: 800; color: var(--orange-light); }
+        .pd-stat-lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .pd-table { display: block; overflow-x: auto; }
+            .pd-accordion-header { padding: 16px 20px; }
+            .pd-accordion-body { padding: 16px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Placement Details</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="placements.html">Placements</a>
+                <span>/</span>
+                <span>Placement Details</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLACEMENT DETAILS CONTENT -->
+    <div class="pd-section">
+        <div class="container" style="max-width:1100px;">
+            <div style="text-align:center; margin-bottom:48px;">
+                <div class="section-label">Student Outcomes</div>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:36px; color:#fff; margin-bottom:12px;">Year-wise Placement Records</h2>
+                <p style="color:var(--text-muted); max-width:600px; margin:0 auto;">Comprehensive list of students placed across top pharma and healthcare companies each academic year.</p>
+            </div>
+
+            <div class="pd-accordion" id="pd-accordion">
+                <!-- Year sections injected below via JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+
+    <script>
+    // Raw placement data extracted from live site
+    const placements = [{"title":"PLACEMENTS 2023-24","subtitle":"PLACEMENTS 2023-24","rows":[]},{"title":"PLACEMENTS 2023-2024","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2023-24","rows":[{"ht":"20T21R0078","name":"Komati Manasa","company":"Biological E. Ltd"},{"ht":"20T21R0044","name":"Vallakati Naresh","company":"Biological E. Ltd"},{"ht":"20T21R0067","name":"Gajengi Sri Meghana","company":"Biological E. Ltd"},{"ht":"20T21R0048","name":"D Suman Choudhary","company":"Biological E. Ltd"},{"ht":"20T21R0035","name":"Nukam Maheshwari","company":"Biological E. Ltd"},{"ht":"20T21R0026","name":"Mamidala Rahul","company":"Biological E. Ltd"},{"ht":"20T21R0095","name":"Suman Yadav","company":"Cordlife"},{"ht":"20T21R0015","name":"Dachaboina Nikhil Raj","company":"Cordlife"},{"ht":"20T21R0039","name":"Ramavath Shirisha","company":"Cordlife"},{"ht":"20T21R0006","name":"Allakonda Teena","company":"Cordlife"},{"ht":"20T21R0077","name":"Katta Sruthi","company":"Cordlife"},{"ht":"20T21R0086","name":"Nagapuri Aishwarya","company":"Primera"},{"ht":"20T21R0021","name":"Karne Stephen","company":"Corro Health"},{"ht":"20T21R0074","name":"Kalva Swapna","company":"Corro Health"},{"ht":"20T21R0054","name":"Ashwini Vairale","company":"Virtual Physician"},{"ht":"20T21R0041","name":"Sarangi Archana","company":"Virtual Physician"},{"ht":"20T21R0003","name":"Adusumilli Mutya Aparna","company":"Virtual Physician"},{"ht":"20T21R0087","name":"Nagulapally Sanjana","company":"Virtual Physician"},{"ht":"20T21R0034","name":"Narayana Reddy Gari Manasa Reddy","company":"Ags Health"},{"ht":"20T21R0002","name":"Adere Sushma","company":"Ags Health"},{"ht":"20T21R0066","name":"Farath Sulthana","company":"Vee healthtek Pvt Ltd"},{"ht":"20T21R0027","name":"Modepalli Poojitha","company":"Advithy Research PVT LTD"},{"ht":"20T21R0065","name":"Chenna Ruchitha","company":"Medcrave info and publishing"},{"ht":"20T21R0064","name":"Chakilam Saikiran","company":"JODAS expoim Pvt Ltd"},{"ht":"20T21R0011","name":"Bhandari Sneha Manwendra","company":"Vaxinu Pharma PVt Ltd"},{"ht":"20T21R0037","name":"Potharaju Kalyani","company":"SkillHigh"},{"ht":"20T21R0031","name":"Myadam Bhavana","company":"Cryoviva Life Sciences"},{"ht":"20T21R0001","name":"A Srikrishna Goud","company":"Appolo Pharmacy"},{"ht":"20T21R00A0","name":"Zafar khan","company":"Appolo Pharmacy"},{"ht":"20T21R0085","name":"Mungi Vishnuvardhan","company":"Vigilare Biopharma Pvt Ltd"},{"ht":"20T21R0009","name":"Bandela sairam","company":"MSN Laboratories"},{"ht":"20T21R0024","name":"Kotasree hemanth","company":"MSN Laboratories"},{"ht":"20T21R0043","name":"Tejasrisathyadurga gopa","company":"MSN Laboratories"},{"ht":"20T21R0057","name":"Bathula akanksha","company":"MSN Laboratories"},{"ht":"20T21R0059","name":"Biradar Mounika","company":"MSN Laboratories"},{"ht":"20T21R0062","name":"Bondi Vaishnavi","company":"MSN Laboratories"},{"ht":"20T21R0033","name":"Nagaram akshaya reddy","company":"Optum"},{"ht":"20T21R0089","name":"Nelikanti vaishnavi","company":"Optum"},{"ht":"20T21R0092","name":"Rathod akshay","company":"Optum"},{"ht":"20T21R0079","name":"Koule ambika","company":"Optum"},{"ht":"20T21R0060","name":"Biraddar swetha","company":"Optum"},{"ht":"20T21R0091","name":"Pothulapalli Shruthi","company":"Optum"},{"ht":"20T21R0096","name":"Sunkari Tanusri","company":"Optum"},{"ht":"20T21R0080","name":"Madne anupama","company":"Thryve Digitals"},{"ht":"20T21R0091","name":"Pothulapalli shruthi","company":"Thryve Digitals"},{"ht":"20T21R0063","name":"Boorgu aashritha","company":"Thryve Digitals"},{"ht":"20T21R0068","name":"Goudally arun kumar","company":"Thryve Digitals"},{"ht":"20T21R0090","name":"Peddi Varshitha","company":"Thryve Digitals"},{"ht":"20T21R0083","name":"Megavath Subhash","company":"Thryve Digitals"},{"ht":"20T21R0093","name":"Sama Mehroosh Khan","company":"Thryve Digitals"},{"ht":"20T21R0098","name":"V. Bala Gnana Laxmi","company":"Thryve Digitals"}]},{"title":"PLACEMENTS 2022-23","subtitle":"PLACEMENTS 2022-23","rows":[]},{"title":"PLACEMENTS 2022-2023","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2022-23","rows":[{"ht":"19T21R0009","name":"Divyam Kumar Singh","company":"Mu Sigma"},{"ht":"19T21R0005","name":"Bommidi Haripriya","company":"Thryve Digital"},{"ht":"19T21R0016","name":"Kota Prameela","company":"Thryve Digital"},{"ht":"19T21R0021","name":"Malkapuram Sindhuri","company":"Thryve Digital"},{"ht":"19T21R0022","name":"Mandapelly Srivani","company":"Thryve Digital"},{"ht":"19T21R0067","name":"Gouseunnisa Begum","company":"Thryve Digital"},{"ht":"19T21R0068","name":"K Navya","company":"Thryve Digital"},{"ht":"19T21R0074","name":"Maisa Shravya","company":"Thryve Digital"},{"ht":"19T21R0083","name":"R Sateesh","company":"Thryve Digital"},{"ht":"19T21R0060","name":"C Pranathi Sena Reddy","company":"Thryve Digital"},{"ht":"19T21R0098","name":"Yedla Shirisha","company":"Thryve Digital"},{"ht":"19T21R0015","name":"Kolimi Nikhil Kumar","company":"Thryve Digital"},{"ht":"19T21R0030","name":"Preethi Konda","company":"Thryve Digital"},{"ht":"19T21R0012","name":"Harman Jot Kaur Manghat","company":"Thryve Digital"},{"ht":"19T21R0046","name":"Adepu Nikitha","company":"Thryve Digital"},{"ht":"19T21R0013","name":"Kaviti Shiva Shankar","company":"Thryve Digital"},{"ht":"19T21R0019","name":"M Pranith Kumar","company":"Thryve Digital"},{"ht":"19T21R0025","name":"Pachipala Yamini","company":"Thryve Digital"},{"ht":"19T21R0029","name":"Pochampalli Gayathri","company":"Thryve Digital"},{"ht":"19T21R0037","name":"Thummala Jyothi","company":"Optum"},{"ht":"19T21R0086","name":"Shaik Rizwana","company":"Optum"},{"ht":"19T21R0044","name":"Yellu Abhishek Reddy","company":"Optum"},{"ht":"19T21R0050","name":"Purelli Anuhya","company":"Optum"},{"ht":"19T21R0057","name":"Bodhari Srinivas","company":"Optum"},{"ht":"19T21R0041","name":"Vudathala Madhukar Goud","company":"Biological E. Limited"},{"ht":"19T21R0070","name":"Kasireddy Sravya","company":"Biological E. Limited"},{"ht":"19T21R0073","name":"Lalishetty Pooja","company":"Biological E. Limited"},{"ht":"19T21R0076","name":"Mohammed Junaid","company":"Biological E. Limited"},{"ht":"19T21R0038","name":"Uppala Vaishnavi","company":"Biological E. Limited"},{"ht":"19T21R0063","name":"Dontula Varsha","company":"Biological E. Limited"},{"ht":"19T21R0082","name":"R Anju","company":"Biological E. Limited"},{"ht":"19T21R0097","name":"Yashwanth Kairam K","company":"4C Drug Safety Services"},{"ht":"19T21R0062","name":"Dasari Arun","company":"4C Drug Safety Services"},{"ht":"19T21R0065","name":"Garshakuntla Rithika","company":"Protouch Staffing"},{"ht":"19T21R0003","name":"B Laxmi","company":"Cognizant"},{"ht":"19T21R0008","name":"Datha Sairachana","company":"Tech Mahindra"},{"ht":"19T21R0087","name":"Simmu","company":"Ags Health"},{"ht":"19T21R0095","name":"Vaishnavi Akula","company":"Eversana"},{"ht":"19T21R0058","name":"Bollapally Keerthi","company":"Eversana"},{"ht":"19T21R0052","name":"Appamagari Bhavana Reddy","company":"Chemo India Formulations Pvt. Ltd"},{"ht":"19T21R0054","name":"Bandi Lohith Chandu","company":"Graviti Pharma"},{"ht":"19T21R0023","name":"Mekala Sindhuja","company":"MSN Laboratories"},{"ht":"19T21R0071","name":"Kavya Sri Devarakonda","company":"MSN Laboratories"},{"ht":"19T21R0072","name":"Kunta Prathyusha","company":"MSN Laboratories"},{"ht":"19T21R0091","name":"Thota Anu Priya","company":"MSN Laboratories"},{"ht":"19T21R0092","name":"Uddamarri Nandini","company":"MSN Laboratories"},{"ht":"19T21R0040","name":"Vankudoth Naveen","company":"MSN Laboratories"},{"ht":"19T21R0042","name":"Vydani Hari Priya","company":"MSN Laboratories"}]},{"title":"PLACEMENTS 2021-22","subtitle":"PLACEMENTS 2021-22","rows":[]},{"title":"PLACEMENTS 2021-2022","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2021-22","rows":[{"ht":"18T21R0074","name":"Koppada Bhargavi","company":"Omega Health Care"},{"ht":"18T21R0081","name":"Megharaj Saisruthi","company":"Alphamed Formulations Pvt Ltd"},{"ht":"18T21R0012","name":"G Vasavi","company":"Vee Technologies Pvt. Ltd"},{"ht":"18T21R0006","name":"Bellam Saranya","company":"Optum"},{"ht":"18T21R0008","name":"Chowtapalli Nirmala Jyothi","company":"Optum"},{"ht":"18T21R0001","name":"Agraram Akhila Goud","company":"Optum"},{"ht":"18T21R0013","name":"Jonnoji Sowmya Sree","company":"Optum"},{"ht":"18T21R0004","name":"Badavath Mothilal","company":"Optum"},{"ht":"18T21R0002","name":"Avangapuram Akhila Reddy","company":"Optum"},{"ht":"18T21R0079","name":"Mandala Harini","company":"Optum"},{"ht":"18T21R0009","name":"D S S S V D Sai Pavan","company":"Thryve Digitals"},{"ht":"18T21R0010","name":"Dacha Tarun","company":"Thryve Digitals"},{"ht":"18T21R0025","name":"Poloju Pranaychandra","company":"Thryve Digitals"},{"ht":"18T21R0007","name":"Borra Jaya","company":"Thryve Digitals"},{"ht":"18T21R0011","name":"Dumpala Yashwanth","company":"Thryve Digitals"},{"ht":"18T21R0076","name":"Kurre Sai Gayathri","company":"Thryve Digitals"},{"ht":"18T21R0051","name":"Alladi Srivarshini","company":"Thryve Digitals"},{"ht":"18T21R0058","name":"Chakali Gouthami","company":"Thryve Digitals"},{"ht":"18T21R0027","name":"Pune Shivani","company":"Med Assist"},{"ht":"18T21R0037","name":"Vathada Rose Vally","company":"Phoenix Infocity Pvt Ltd"},{"ht":"18T21R0038","name":"Vudayana Devi","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0029","name":"Sabavath Chandrakala","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0035","name":"Ummadi Keerthi","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0036","name":"Varthya Tanvi","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0040","name":"Balemla Uma Reddy","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0045","name":"Gangavarapu Sai Narsimha","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0039","name":"Yella Lokesh Chanikya","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0093","name":"Shivampeta Ruchita","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0064","name":"Golla Srilatha","company":"Maithri Drugs Pvt. Ltd"},{"ht":"18T21R0047","name":"M Santhi Sri","company":"Pulsus"},{"ht":"18T21R0060","name":"Damalapati Rama Devi","company":"SK Health Care"},{"ht":"18T21R0077","name":"M Ramesh","company":"Gravity Pharmaceutical Pvt. Ltd"},{"ht":"18T21R0048","name":"Mohammad Haji","company":"MSN Laboratories"},{"ht":"18T21R0049","name":"Nandala Shanthi Kumar","company":"MSN Laboratories"},{"ht":"18T21R0061","name":"Devarapally Nikitha","company":"MSN Laboratories"},{"ht":"18T21R0063","name":"G Madhuri","company":"MSN Laboratories"},{"ht":"18T21R0080","name":"Marrapalli Keerthana","company":"MSN Laboratories"},{"ht":"18T21R0082","name":"Mogili Ramya","company":"MSN Laboratories"},{"ht":"18T21R0066","name":"Himanshu Rasyara","company":"MSN Laboratories"},{"ht":"18T21R0071","name":"Kanduri Sai Madhuri","company":"MSN Laboratories"},{"ht":"18T21R0072","name":"Karraja Hymavathi","company":"Biological E. Ltd"},{"ht":"18T21R0073","name":"Kavya Kalesh","company":"Biological E. Ltd"},{"ht":"18T21R0059","name":"Cheruku Pavankalyan","company":"Biological E. Ltd"},{"ht":"18T21R0075","name":"Krishnamurthy Madhu","company":"Biological E. Ltd"},{"ht":"18T21R0024","name":"Pogu Tejaswini","company":"Biological E. Ltd"},{"ht":"18T21R0098","name":"Veshala Meenakshi","company":"Biological E. Ltd"},{"ht":"18T21R0091","name":"Shaik Shalmaaga","company":"Biological E. Ltd"},{"ht":"18T21R0099","name":"Yalaga Suhani","company":"Aquity Solutions"},{"ht":"18T21R0065","name":"Gurrampally Pavan Kalyan","company":"Etico Research Pvt. Ltd"}]},{"title":"PLACEMENTS 2020-21","subtitle":"PLACEMENTS 2020-21","rows":[]},{"title":"PLACEMENTS 2020-21","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2020-21","rows":[{"ht":"17T21R0066","name":"G. Pragna","company":"TeamHR services Private Limited"},{"ht":"17T21R0074","name":"Rajeshwari","company":"TeamHR services Private Limited"},{"ht":"17T21R0043","name":"V. Supriya","company":"TeamHR services Private Limited"},{"ht":"17T21R0041","name":"T. Mahendar","company":"TeamHR services Private Limited"},{"ht":"17T21R0002","name":"Aishwarya Lakshmi Jayaram","company":"Episource India Pvt Ltd"},{"ht":"17T21R0009","name":"B. Hari Chandana","company":"Episource India Pvt Ltd"},{"ht":"17T21R0027","name":"N. Hema Reddy","company":"Episource India Pvt Ltd"},{"ht":"17T21R0030","name":"Christy Jose","company":"Episource India Pvt Ltd"},{"ht":"17T21R0032","name":"S Tejasri","company":"Episource India Pvt Ltd"},{"ht":"17T21R0036","name":"Shaik Arshiya Sulthana","company":"Episource India Pvt Ltd"},{"ht":"17T21R0045","name":"Gilla Roshni","company":"Episource India Pvt Ltd"},{"ht":"17T21R0091","name":"S. Ramya Sree","company":"Episource India Pvt Ltd"},{"ht":"17T21R0058","name":"Sanjana Reddy. Ch","company":"Episource India Pvt Ltd"},{"ht":"17T21R0025","name":"Manimozhi","company":"Episource India Pvt Ltd"},{"ht":"17T21R0063","name":"K. Sravya","company":"Tcs"},{"ht":"17T21R0042","name":"V. Pallavi","company":"Tcs"},{"ht":"17T21R0035","name":"Sana Firdous","company":"Good Health Tpa"},{"ht":"17T21R0020","name":"K. Niharika","company":"Good Health Tpa"},{"ht":"17T21R0015","name":"J. Sravya","company":"Good Health Tpa"},{"ht":"17T21R0011","name":"D. Swetha","company":"Good Health Tpa"},{"ht":"17T21R0028","name":"N. Prashanthi","company":"Good Health Tpa"},{"ht":"17T21R0078","name":"M. Madhukumar","company":"Good Health Tpa"},{"ht":"17T21R0013","name":"G. Niveditha","company":"Good Health Tpa"},{"ht":"17T21R0039","name":"T.Srija","company":"Good Health Tpa"},{"ht":"17T21R0075","name":"M M Shiva Kumar","company":"Aizant Drug Research Solutions Pvt Ltd."},{"ht":"17T21R0049","name":"P. Swathi","company":"Vimta Labs"},{"ht":"17T21R0099","name":"V. Sruthi","company":"Vimta Labs"},{"ht":"17T21R0071","name":"Kavitha Choudhary","company":"Vimta Labs"},{"ht":"17T21R0095","name":"T. Anil Kumar","company":"Vimta Labs"},{"ht":"17T21R0051","name":"Karuna Sree","company":"Vimta Labs"},{"ht":"17T21R0076","name":"Ma Aseem","company":"Vimta Labs"},{"ht":"17T21R0085","name":"R. Navya Sree","company":"Apollo Health Sciences"},{"ht":"17T21R0077","name":"M. Manasa","company":"Apollo Health Sciences"},{"ht":"17T21R0029","name":"Keertana. P","company":"Apollo Health Sciences"},{"ht":"17T21R0003","name":"Alli Shravani","company":"Apollo Health Sciences"},{"ht":"17T21R0006","name":"Banoth Bhargav Naik","company":"Apollo Health Sciences"},{"ht":"17T21R0014","name":"Jadhav Balraj","company":"Divi’s Laboratories"},{"ht":"17T21R0018","name":"Kajal Rana","company":"Divi’s Laboratories"},{"ht":"17T21R0021","name":"Korey Shravya","company":"Divi’s Laboratories"},{"ht":"17T21R0022","name":"Kunchala Haritha","company":"Divi’s Laboratories"},{"ht":"17T21R0026","name":"Marepally Karthik Venkat Sai Sharan","company":"Divi’s Laboratories"},{"ht":"17T21R0050","name":"Yamjala Rachana","company":"Divi’s Laboratories"},{"ht":"17T21R0052","name":"Balgari Sandeep","company":"Pelcoat Formulations Pvt Ltd"},{"ht":"17T21R0053","name":"Battuwar Rashmi","company":"Pelcoat Formulations Pvt Ltd"},{"ht":"17T21R0070","name":"Karnatakam Vaishnav","company":"Pelcoat Formulations Pvt Ltd"},{"ht":"17T21R0084","name":"R Durga Prasanna","company":"Pelcoat Formulations Pvt Ltd"},{"ht":"17T21R0082","name":"Mothe Shivashankar","company":"Pelcoat Formulations Pvt Ltd"},{"ht":"17T21R0086","name":"Salla Naveen Kumar","company":"Pelcoat Formulations Pvt Ltd"}]},{"title":"PLACEMENTS 2019-20","subtitle":"PLACEMENTS 2019-20","rows":[]},{"title":"PLACEMENTS 2019-20","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2019-20","rows":[{"ht":"14T21T0020","name":"Sanjana Yadav","company":"IQVIA, Bengaluru"},{"ht":"14T21T0010","name":"K. Mallika","company":"AIG Hospital, Gachibowli"},{"ht":"17T25T0007","name":"Shruthi","company":"Sree Nandaka Fertility and Laparoscopy Centre, Hyd"},{"ht":"17T25T0004","name":"Hepciba N","company":"Artifint Technologies Pvt Ltd, Hyd"},{"ht":"14T21T0008","name":"K. Shilpa","company":"PPD, Hyderabad"},{"ht":"14T21T0001","name":"B. Nadia Sulemite","company":"PPD, Hyderabad"},{"ht":"16T21R0036","name":"PATIL VIJAY KUMAR","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0041","name":"RATHLA SHIRISHA","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0050","name":"VALLAPU UMA RANI","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0055","name":"BOMMA BHAVANI","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0062","name":"KALLEM DIVYA","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0073","name":"PANIKARA JYOTHI","company":"Medico health care services &amp; Technologies"},{"ht":"16T21R0074","name":"PASIKA SHASHANK REDDY","company":"Medico health care services &amp; Technologies"},{"ht":"14T21T0016","name":"M. Shiva Krishna","company":"Sclinsoft Technologies Pvt Ltd, Hyd"},{"ht":"14T21T0021","name":"Shreya Varanasi","company":"VIVO Life Sciences, Hyd"},{"ht":"14T21T0013","name":"K. Sowmya","company":"VIVO Life Sciences, Hyd"},{"ht":"14T21T0006","name":"Vageeshwari Devuni","company":"VIVO Life Sciences, Hyd"},{"ht":"14T21T0023","name":"Syeda Sarvat","company":"Sclin Tech Soft, Hyd"},{"ht":"14T21T0002","name":"B Harsha Vardhan","company":"Sclin Tech Soft, Hyd"},{"ht":"14T21T0027","name":"Debabrata Chaudhury","company":"Sclin Tech Soft, Hyd"},{"ht":"14T21T0007","name":"G. Priyanka","company":"iSafety, Hyd"},{"ht":"17T25T0003","name":"Gnana Swarupini","company":"Sunshine Hospital, Hyd"},{"ht":"16T21R0026","name":"KODATI SAIKUMAR","company":"Vimta labs"},{"ht":"16T21R0015","name":"GANGA VARUN SAMRAT","company":"Vimta labs"},{"ht":"16T21R0016","name":"GANGIPELLY ARUN KUMAR","company":"Vimta labs"},{"ht":"16T21R0007","name":"CHEKURI KAVYA SREE","company":"Vimta labs"},{"ht":"16T21R0086","name":"K NIHARIKA","company":"Divis laboretories limited"},{"ht":"16T21R0087","name":"BODDU MADHURI","company":"Divis laboretories limited"},{"ht":"16T21R0091","name":"MEHNAZ THAMKEEN","company":"Divis laboretories limited"},{"ht":"16T21R0004","name":"ARWA TARAKA MOUNI","company":"Apollo Health sciences"},{"ht":"16T21R0014","name":"GANDRU DIVYASRI","company":"Apollo Health sciences"},{"ht":"16T21R0027","name":"MANEPALLI DINEESHA","company":"Apollo Health sciences"},{"ht":"16T21R0040","name":"PRATHIKANTAM RAJESHWARI","company":"Apollo Health sciences"},{"ht":"16T21R0051","name":"ALAKUNTA DEEKSHA","company":"Apollo Health sciences"},{"ht":"16T21R0072","name":"NAREDDY MANASWINI REDDY","company":"Apollo Health sciences"},{"ht":"16T21R0093","name":"KASOJJALA NAGA PRATHYUSHA","company":"Apollo Health sciences"},{"ht":"16T21R0028","name":"MATETI RAVALIKA","company":"Apollo Health sciences"},{"ht":"16T21R0025","name":"KHATIJA FATIMA","company":"Apollo Health sciences"},{"ht":"16T21R0022","name":"KALLU JONAN AKHIL RAJ","company":"pelcoat formulations pvt ltd"},{"ht":"16T21R0037","name":"PEDDALA SAIKRISHNA","company":"pelcoat formulations pvt ltd"},{"ht":"16T21R0038","name":"PENTA NIKHIL","company":"pelcoat formulations pvt ltd"},{"ht":"16T21R0065","name":"KOYYADA GNAPIKA","company":"Gland Pharma Ltd"},{"ht":"16T21R0074","name":"PASIKA SHASHANK REDDY","company":"Gland Pharma Ltd"},{"ht":"16T21R0078","name":"RANGISETTI SRAVANI","company":"Gland Pharma Ltd"},{"ht":"16T21R0083","name":"TARI SAI KUMAR","company":"Gland Pharma Ltd"}]},{"title":"PLACEMENTS 2018-19","subtitle":"PLACEMENTS 2018-19","rows":[]},{"title":"PLACEMENTS 2018-19","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2018-19","rows":[{"ht":"15T21R0029","name":"MUNIPALLI SAI SOUJANYA LAXMI","company":"BioClinica"},{"ht":"15T21R0034","name":"PULUGURTHA VANI SRILAKSHMI","company":"BioClinica"},{"ht":"15T21R0052","name":"AISHWARYA KAILAS","company":"BioClinica"},{"ht":"15T21R0075","name":"KOTHA ROHINI","company":"BioClinica"},{"ht":"17T21S0406","name":"GODA SANDHYA RANI","company":"BioClinica"},{"ht":"13T21T0008","name":"ERAGADINDLA.MAMATHA","company":"BioClinica"},{"ht":"13T21T0011","name":"G SUDARSINI TRYPHEENA","company":"BioClinica"},{"ht":"13T21T0018","name":"KEERTI TIWARI","company":"BioClinica"},{"ht":"14T28T0001","name":"K.SRAVYA","company":"BioClinica"},{"ht":"17T28T0001","name":"SHRIKANTHAM MOUNICA","company":"BioClinica"},{"ht":"","name":"SAURABH KHADE","company":"BioClinica"},{"ht":"17T21S0404","name":"C SRAVYA CHOWDARY","company":"Divis Lab"},{"ht":"15T21R0056","name":"CHANDALURI. NAVYASREE","company":"Divis Lab"},{"ht":"15T21R0086","name":"NIMMAGADDA VIGNA PRIYATHA","company":"Divis Lab"},{"ht":"15T21R0003","name":"ANKIT KUMAR","company":"Divis Lab"},{"ht":"15T21R0023","name":"KAMAREDDY. SANDEEP","company":"Divis Lab"},{"ht":"15T21R0094","name":"S KARTHIK","company":"Divis Lab"},{"ht":"15T21R0033","name":"PENDEM PAVAN KUMAR","company":"Divis Lab"},{"ht":"15T21R0037","name":"RAVELLA DILIP KUMAR","company":"Divis Lab"},{"ht":"15T21R0019","name":"HARPITH SIGNH","company":"Divis Lab"},{"ht":"15T21R0019","name":"HARPITH SIGNH","company":"Optimus"},{"ht":"15T21R0094","name":"S KARTHIK","company":"Divis Lab"},{"ht":"15T21R0020","name":"JAKKA DEEKSHA REDDY","company":"OPTIMUS"},{"ht":"15T21R0053","name":"AMBATI ANUSHA","company":"OPTIMUS"},{"ht":"15T21R0021","name":"JALIGAM SUMAN","company":"OPTIMUS"},{"ht":"15T21R0031","name":"PALAKURTHI SUSHESH SRIVATSA","company":"OPTIMUS"},{"ht":"15T21R0067","name":"M.SOWMYA YADAV","company":"OPTIMUS"},{"ht":"17T21S0404","name":"CHERUKURI SRAVYA CHOWDARY","company":"Gland Pharma"},{"ht":"15T21R0078","name":"M.ARAVIND","company":"Gland Pharma"},{"ht":"15T21R0083","name":"MUTHYAPUWAR SAI MANISH","company":"Gland Pharma"},{"ht":"15T21R0017","name":"DHANASIRI BASAVA CHAITANYA","company":"Gland Pharma"},{"ht":"15T21R0037","name":"RAVELLA DILIP KUMAR","company":"Gland Pharma"},{"ht":"15T21R0047","name":"VANGALA SREEVIBHA","company":"Gland Pharma"},{"ht":"15T21R0098","name":"UMA SAI TEJA YARRA","company":"Gland Pharma"},{"ht":"15T21R00A0","name":"YEDDULA VENAKATA PRITHAM REDDY","company":"Gland Pharma"},{"ht":"17T21S0410","name":"NALI GANGA DEVI","company":"Gland Pharma"},{"ht":"15T21R0078","name":"M.ARAVIND","company":"Pfizer"},{"ht":"15T21R0083","name":"MUTHYAPUWAR SAI MANISH","company":"Pfizer"},{"ht":"15T21R0020","name":"JAKKA DEEKSHA REDDY","company":"Pfizer"},{"ht":"15T21R0053","name":"AMBATI ANUSHA","company":"Pfizer"}]},{"title":"PLACEMENTS 2017-18","subtitle":"PLACEMENTS 2017-18","rows":[]},{"title":"PLACEMENTS 2017-18","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2017-18","rows":[{"ht":"14T21R0042","name":"SHAIK NASREEN","company":"VIMTA LABS"},{"ht":"14T21R0014","name":"Deepak","company":"OMICS International"},{"ht":"14T21R0017","name":"Nikhil","company":"OMICS International"},{"ht":"14T21R0018","name":"KEMMASARAM LIKITHA KANNA","company":"OMICS International"},{"ht":"14T21R0019","name":"KATAKAM HARSHITHA","company":"OMICS International"},{"ht":"14T21R0022","name":"GAWALI KAUSHIK. M","company":"OMICS International"},{"ht":"14T21R0025","name":"MEGHI SAMATHA","company":"OMICS International"},{"ht":"14T21R0030","name":"NUNE NIHARIKA","company":"OMICS International"},{"ht":"14T21R0031","name":"PEDDAKOTLA SHRAVANI MARY","company":"OMICS International"},{"ht":"14T21R0035","name":"PESARIKAYALA HIMA BINDU","company":"OMICS International"},{"ht":"14T21R0042","name":"SHAIK NASREEN","company":"Omics International"},{"ht":"14T21R0044","name":"SOMA MOUNIKA","company":"OMICS International"},{"ht":"14T21R0048","name":"VODYALA SNEHA","company":"OMICS International"},{"ht":"14T21R0053","name":"CH YAMINI","company":"OMICS International"},{"ht":"14T21R0056","name":"GADDAM VAINAVIKA REDDY","company":"OMICS International"},{"ht":"14T21R0075","name":"NIRAJ KUMAR","company":"OMICS International"},{"ht":"14T21R0093","name":"MOHD BALIGUDDIN","company":"OMICS International"},{"ht":"14T21R0004","name":"Saikrishna","company":"MEDPLUS"},{"ht":"14T21R0010","name":"BEJAWADA SUDHA","company":"MEDPLUS"},{"ht":"14T21R0020","name":"Sharath","company":"MEDPLUS"},{"ht":"14T21R0028","name":"NAGAMALLA AKHILESH KUMAR","company":"MEDPLUS &amp; OMICS International"},{"ht":"14T21R0034","name":"PALLATI KIRAN RATNA","company":"MEDPLUS"},{"ht":"14T21R0038","name":"PULIPAKA SRAVANI","company":"MEDPLUS"},{"ht":"14T21R0040","name":"REHAN KHAN","company":"MEDPLUS"},{"ht":"14T21R0043","name":"SHUBHAM YADAV","company":"MEDPLUS"},{"ht":"14T21R0050","name":"Zainab Asif Ali","company":"MEDPLUS"},{"ht":"14T21R0062","name":"KARROLLA SHINY","company":"MEDPLUS"},{"ht":"14T21R0068","name":"MOHAMMAD ASHWAQ","company":"MEDPLUS"},{"ht":"14T21R0082","name":"SRIRANGPURAM SAI DEVENDER","company":"MEDPLUS"},{"ht":"14T21R0094","name":"GALIPELLY BHARADWAJ","company":"MEDPLUS"},{"ht":"15T25R0003","name":"T Susmitha","company":"MEDPLUS"},{"ht":"14T25R0046","name":"BUSSA SHARATHCHANDRA","company":"MEDPLUS"},{"ht":"14T25R0033","name":"AV SAI KRISHNA","company":"MEDPLUS"},{"ht":"14T25R0026","name":"MOHAMED FAIZUDDIN","company":"MEDPLUS"},{"ht":"14T21R0063","name":"KAVETI MANOGNYA","company":"VIMTA LABS"},{"ht":"","name":"Surya","company":"Biofi"},{"ht":"","name":"Koushik","company":"Biofi"},{"ht":"","name":"Rohit","company":"Biofi"},{"ht":"","name":"Vinod","company":"Biofi"}]},{"title":"PLACEMENTS 2016-17","subtitle":"PLACEMENTS 2016-17","rows":[]},{"title":"PLACEMENTS 2016-17","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2016-17","rows":[{"ht":"13T21R0001","name":"AKHILESWARI GANGA V","company":"OMICS International"},{"ht":"13T21R0004","name":"BOKKA SRI HARSHITA","company":"OMICS International"},{"ht":"13T21R0005","name":"BONDADA MANASA","company":"OMICS International"},{"ht":"13T21R0012","name":"ESLAVATH THIRUPATHI NAYAK","company":"OMICS International"},{"ht":"13T21R0013","name":"G DAIVA BHUSHAN","company":"OMICS International"},{"ht":"13T21R0024","name":"KAVATI SAI VINAY PRAKASH KUMAR","company":"OMICS International"},{"ht":"13T21R0031","name":"N SUPRAJA","company":"OMICS International"},{"ht":"13T21R0033","name":"NEMALIKANTI PRIYANKA","company":"OMICS International"},{"ht":"13T21R0037","name":"RASKONDA TEJASVI ANAND","company":"OMICS International"},{"ht":"13T21R0038","name":"ROWDUR MIDINTI PREMIKA","company":"OMICS International"},{"ht":"13T21R0039","name":"SAMMETA SRIVALLIKA","company":"OMICS International"},{"ht":"13T21R0042","name":"SARDAR TARANJEET KOUR","company":"OMICS International"},{"ht":"13T21R0043","name":"SAFURA MAHEEN","company":"OMICS International"},{"ht":"13T21R0045","name":"TSUNDUPALLI AKSHAY RAM","company":"OMICS International"},{"ht":"13T21R0050","name":"YADDALA SUSHMITHA","company":"OMICS International"},{"ht":"13T21R0051","name":"A AKHILA","company":"OMICS International"},{"ht":"13T21R0053","name":"AFIYA BEGUM","company":"OMICS International"},{"ht":"13T21R0055","name":"APOORVA R","company":"OMICS International"},{"ht":"13T21R0062","name":"CHIRANJEEVI NIKHITA","company":"OMICS International"},{"ht":"13T21R0065","name":"EDA SAI JAHNAVI REDDY","company":"OMICS International"},{"ht":"13T21R0067","name":"K BHAVANI","company":"OMICS International"},{"ht":"13T21R0070","name":"KAMINENI PRAGNA","company":"OMICS International"},{"ht":"13T21R0084","name":"POLEBOINA SAI SRAVANTHI","company":"OMICS International"},{"ht":"13T21R0006","name":"BOOKYA RAVINDER","company":"Global data"},{"ht":"13T21R0046","name":"V GUNA SELVI","company":"Global data"},{"ht":"13T21R0058","name":"BATTI PRIYANKA","company":"Global data"},{"ht":"13T21R0086","name":"PULI SANJUNA","company":"Global data"},{"ht":"13T21R0087","name":"RACHAKONDA SWAPNA","company":"Global data"},{"ht":"13T21R0091","name":"V SAI KIRAN REDDY","company":"Global data"},{"ht":"137U1R0056","name":"TALAGADDA SANDHYA RANI","company":"Global data"},{"ht":"13T21R0009","name":"CHELIMALA MOUNICA","company":"Siya Publications"},{"ht":"13T21R0017","name":"GODUGU MONIKA","company":"Siya Publications"},{"ht":"13T21R0041","name":"SANA TABASSUM","company":"Siya Publications"},{"ht":"13T21R0071","name":"KANUKANTI MOUNIKA","company":"Siya Publications"},{"ht":"13T21R0078","name":"MAKAM DIVYA","company":"Siya Publications"},{"ht":"13T21R0079","name":"MANDA SRIVANI","company":"Siya Publications"},{"ht":"13T21R0092","name":"MALLAPU SHIVA SAI VAMSIDHAR REDDY","company":"Siya Publications"},{"ht":"13T21R0020","name":"KAMALAMMAGARI PAVANI","company":"UnitedHealth Group"},{"ht":"13T21R0021","name":"K PRIYANKA","company":"UnitedHealth Group"},{"ht":"13T21R0025","name":"KOTHA RAMYA","company":"UnitedHealth Group"},{"ht":"13T21R0027","name":"METTU RAJU","company":"UnitedHealth Group"},{"ht":"13T21R0048","name":"V SRAVYA","company":"UnitedHealth Group"},{"ht":"13T21R0049","name":"VEMPARALA SAI SUBRAHMANYA DEEKSHITULU","company":"UnitedHealth Group"}]},{"title":"PLACEMENTS 2015-16","subtitle":"PLACEMENTS 2015-16","rows":[]},{"title":"PLACEMENTS 2015-16","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2015-16","rows":[{"ht":"12T21R0003","name":"B NEHA MANI MANJARI","company":"GSK HEALTH CARE"},{"ht":"12T21R0006","name":"BEJJENKI NIKHIL KUMAR","company":"GSK HEALTH CARE"},{"ht":"12T21R0007","name":"BONOTHU SUMITHRA","company":"GSK HEALTH CARE"},{"ht":"12T21R0021","name":"K SUSHMA RANI","company":"GSK HEALTH CARE"},{"ht":"12T21R0025","name":"KANDALA BHASKARA VEERA TEJA SHOURY","company":"GSK HEALTH CARE"},{"ht":"12T21R0026","name":"KATTA MOUNIKA","company":"GSK HEALTH CARE"},{"ht":"12T21R0068","name":"L HARITHA","company":"GSK HEALTH CARE"},{"ht":"12T21R0071","name":"M SRITEJA","company":"GSK HEALTH CARE"},{"ht":"12T21R0012","name":"ELAGANDULA DIVYA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0013","name":"FOUZIYA SU LTANA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0014","name":"GANGADHARA PRAVEEN KUMAR","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0019","name":"K LOHITHA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0020","name":"K.NARMADA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0022","name":"K VARUNA REDDY","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0023","name":"KAIRI RACHANASRI","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0028","name":"LAXMI PRIYA SAHOO","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0031","name":"MARIPALLY PARAMESHWARI","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0032","name":"MATTI RAJIV","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0033","name":"MULKALA VENU","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0036","name":"NANDELLI SUPRAJA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0038","name":"NIMMAGADDA RAVALI","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0039","name":"P MEGHANA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0061","name":"KANAKATTE NARSA REDDY","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0062","name":"K SAI SOWMITH PHANI THEJA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0063","name":"KADAVERU UDAY KUMAR","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0069","name":"LOSRAWAR SHANTHI CHOWDARY","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0076","name":"P VIJAYA BHARGAVI","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0082","name":"RENDUCHINTALA AAMUKTA","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0084","name":"SHAHNAZ KULSUM","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0085","name":"SHUKLA PAWAN","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0091","name":"SILIVERU SHALINI","company":"SUTHER LAND GLOBAL"},{"ht":"12T21R0043","name":"SANKATI VINEESHA","company":"PRIMERA MEDICAL"},{"ht":"12T21R0044","name":"S.SAI PRANITHA","company":"PRIMERA MEDICAL"},{"ht":"12T21R0045","name":"SOUNDARYA KHANDADI","company":"PRIMERA MEDICAL"},{"ht":"12T21R0055","name":"GADDAM RASHMI","company":"PRIMERA MEDICAL"},{"ht":"12T21R0057","name":"GUMPULA AVINASH","company":"PRIMERA MEDICAL"},{"ht":"12T21R0059","name":"J ANANTHLAXMI","company":"PRIMERA MEDICAL"},{"ht":"12T21R0070","name":"M RAMYA","company":"PRIMERA MEDICAL"},{"ht":"12T21R0072","name":"M.SATISH REDDY","company":"PRIMERA MEDICAL"},{"ht":"12T21R0051","name":"CHEELRA KRISHNA DEEPTHI","company":"CORD LIFE SCIENCES"}]},{"title":"PLACEMENTS 2014-15","subtitle":"PLACEMENTS 2014-15","rows":[]},{"title":"PLACEMENTS 2014-15","subtitle":"LIST OF STUDENTS PLACED FOR ACADEMIC YEAR 2014-15","rows":[{"ht":"11T21R0010","name":"B SRAVYA PATIL","company":"GSK HEALTH CARE"},{"ht":"11T21R0013","name":"BAMPELLY VIJAYA LAXMI","company":"GSK HEALTH CARE"},{"ht":"11T21R0012","name":"BADUGU MAMATHA","company":"GSK HEALTH CARE"},{"ht":"11T21R0016","name":"BARLAPUDI KUMAR SAMPATH","company":"GSK HEALTH CARE"},{"ht":"11T21R0024","name":"BOMMAREDDY SATYA SAI REDDY","company":"GSK HEALTH CARE"},{"ht":"11T21R0067","name":"K MANASA","company":"GSK HEALTH CARE"},{"ht":"11T21R00A4","name":"N BHARATH KUMAR","company":"GSK HEALTH CARE"},{"ht":"11T21R00A9","name":"NARASINGARI RAJITHA","company":"GSK HEALTH CARE"},{"ht":"11T21R00B0","name":"NATHI MURALI","company":"GSK HEALTH CARE"},{"ht":"11T21R0039","name":"DAMALANKA MOUNIKA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0040","name":"DARA VINAY","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0042","name":"DATLA SRAVYA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0047","name":"DURGAM VIMALA GOUD","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0069","name":"KASARAM PALLAVI","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0072","name":"KOORAPATI SAHITYA LAKSHMI","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0076","name":"KOVELA SREEYOUTHA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0077","name":"KRISHNAPHANI SRI P","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0082","name":"L PRIYANKA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0087","name":"M SUSHMITHA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0095","name":"MANDELA NANDINI RAMA LAKSHMI","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R00A0","name":"MEGHALI DAS","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R00D1","name":"PULIGILLA VANDANA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R00D3","name":"R KAVYA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R00D9","name":"RAMESHWARAM MOUNICA","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R00G0","name":"THAKUR RASHMI SINGH","company":"SUTHER LAND GLOBAL"},{"ht":"11T21R0010","name":"CHAVAN SHIVA KUMARI BAI","company":"NEON LABS"},{"ht":"11T21R0013","name":"CHINTHAMADAKA ANITHA","company":"NEON LABS"},{"ht":"11T21R0012","name":"D N S ANUSHA","company":"NEON LABS"},{"ht":"11T21R0016","name":"D SAI PRAMUKH","company":"NEON LABS"},{"ht":"11T21R0024","name":"RUPANI MADHU","company":"NEON LABS"},{"ht":"11T21R0067","name":"S MAHESH BABU","company":"NEON LABS"},{"ht":"11T21R00A4","name":"SALADI SRI DURGA SREEJA","company":"NEON LABS"},{"ht":"11T21R00A9","name":"SANDE ROOPA RANI","company":"NEON LABS"},{"ht":"11T21R00B0","name":"VIKRAMBABU BOMMIRALA","company":"NEON LABS"},{"ht":"11T21R0001","name":"A KARTHIK","company":"MED PLUS"},{"ht":"11T21R0002","name":"A MADHAVI DEVI","company":"MED PLUS"},{"ht":"11T21R0004","name":"ALLA HARITHA","company":"MED PLUS"},{"ht":"11T21R0005","name":"ANDEY VUMMANNAGARI RAKESH","company":"MED PLUS"},{"ht":"11T21R0011","name":"B SUNIL KUMAR","company":"MED PLUS"},{"ht":"11T21R0017","name":"BELLALA RAJU CHARY","company":"MED PLUS"},{"ht":"11T21R0018","name":"BHAGAVATH BHAVANI SHANKER","company":"MED PLUS"},{"ht":"11T21R0022","name":"BOJARAJU GURUCHARAN","company":"MED PLUS"},{"ht":"11T21R0023","name":"BOLISHETTI PRADEEP KUMAR","company":"MED PLUS"},{"ht":"11T21R0031","name":"CHALLA MAHESHWAR REDDY","company":"MED PLUS"},{"ht":"11T21R0049","name":"G DINESH KUMAR","company":"MED PLUS"},{"ht":"11T21R0053","name":"GADIGAE DHATHRI","company":"MED PLUS"},{"ht":"11T21R0058","name":"INDURWAR SWAPNA","company":"MED PLUS"},{"ht":"11T21R0059","name":"J AVINASH RAJ","company":"MED PLUS"},{"ht":"11T21R0094","name":"MANDA SURESH BABU","company":"MED PLUS"},{"ht":"11T21R00B4","name":"P V PAVAN KUMAR","company":"MED PLUS"},{"ht":"11T21R00B9","name":"PANTHAM YERROLLA SATISH","company":"MED PLUS"},{"ht":"11T21R00C0","name":"PARVEEN SULTANA","company":"MED PLUS"},{"ht":"11T21R00C1","name":"PATCHA YAMINI VENKATA ROOPA LAKSHMI","company":"MED PLUS"},{"ht":"11T21R00C2","name":"PATIMINLA BHANU PRAKASH","company":"MED PLUS"},{"ht":"11T21R00C7","name":"POLAMOLLA NAGARAJ","company":"MED PLUS"},{"ht":"11T21R00F1","name":"SHIVUNI SAMPATH KUMAR","company":"MED PLUS"},{"ht":"11T21R00F4","name":"SUNIL SINGH JADHAV","company":"MED PLUS"},{"ht":"11T21R00F7","name":"TAADEPU BABU","company":"MED PLUS"},{"ht":"11T21R00F9","name":"TATA KARTHIK","company":"MED PLUS"},{"ht":"11T21R00G1","name":"THOTA SAIRAM","company":"MED PLUS"},{"ht":"11T21R00G6","name":"VANJARI SRIKANTH","company":"MED PLUS"},{"ht":"11T21R00G7","name":"VELPULA SRINIVAS","company":"MED PLUS"},{"ht":"11T21R00H2","name":"YATAVELLY SRIKANTH REDDY","company":"MED PLUS"},{"ht":"11T21R00H3","name":"YENIGALLA SRI KALA","company":"MED PLUS"},{"ht":"12T25R0001","name":"K.M.DEEPIKA","company":"MED PLUS"},{"ht":"10T21R0023","name":"CHODAVARAPU POOJA KAMESHWARI","company":"MED PLUS"},{"ht":"10T21R0064","name":"MOLUGU PRAMUKH CHANDRA","company":"MED PLUS"},{"ht":"11T21R0088","name":"M VIJAY KUMAR","company":"MED PLUS"},{"ht":"11T21R0025","name":"BONDHI MADHU GOUD","company":"MED PLUS"}]}];
+
+    function buildAccordion() {
+        const container = document.getElementById('pd-accordion');
+        placements.filter(y => y.rows && y.rows.length > 0).forEach((year, idx) => {
+            const item = document.createElement('div');
+            item.className = 'pd-accordion-item';
+            
+            const rowCount = year.rows.length;
+            
+            item.innerHTML = `
+                <div class="pd-accordion-header" onclick="toggleAccordion(this)">
+                    <div>
+                        <div class="pd-year-label">${year.title}</div>
+                        <div style="font-size:13px; color:var(--text-muted); margin-top:4px;">${rowCount} Students Placed</div>
+                    </div>
+                    <div class="pd-toggle-icon">+</div>
+                </div>
+                <div class="pd-accordion-body ${idx === 0 ? 'show' : ''}">
+                    <div class="pd-stat-bar">
+                        <div class="pd-stat">
+                            <div class="pd-stat-num">${rowCount}</div>
+                            <div class="pd-stat-lbl">Students Placed</div>
+                        </div>
+                    </div>
+                    <h3 class="pd-sub-title">List of Students Placed — ${year.subtitle || year.title}</h3>
+                    <table class="pd-table">
+                        <thead>
+                            <tr>
+                                <th>S. No</th>
+                                <th>H.T. No.</th>
+                                <th>Student Name</th>
+                                <th>Company Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${year.rows.map((r, i) => `<tr>
+                                <td>${i + 1}</td>
+                                <td style="font-family:monospace; color:var(--orange-light);">${r.ht || ''}</td>
+                                <td>${r.name || ''}</td>
+                                <td>${r.company || ''}</td>
+                            </tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            if (idx === 0) {
+                item.querySelector('.pd-accordion-header').classList.add('active');
+            }
+            
+            container.appendChild(item);
+        });
+    }
+
+    function toggleAccordion(header) {
+        const body = header.nextElementSibling;
+        const isOpen = body.classList.contains('show');
+        
+        // Close all
+        document.querySelectorAll('.pd-accordion-body').forEach(b => b.classList.remove('show'));
+        document.querySelectorAll('.pd-accordion-header').forEach(h => h.classList.remove('active'));
+        
+        if (!isOpen) {
+            body.classList.add('show');
+            header.classList.add('active');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', buildAccordion);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduated Student Details 2020 | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ===== INNER PAGE CONTENT STYLES ===== */
+        .inner-content-wrap {
+            background: var(--navy);
+            min-height: 60vh;
+            padding: 64px 0 80px;
+        }
+        .inner-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Profile card layout */
+        .profile-layout {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+        .profile-img-col {
+            flex-shrink: 0;
+            width: 200px;
+            text-align: center;
+        }
+        .profile-img-col img {
+            width: 180px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            border: 3px solid var(--orange);
+        }
+        .profile-text-col { flex: 1; }
+        .profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .profile-designation {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--orange-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        .profile-bio {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+        }
+
+        /* Data table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+        }
+        .data-table th {
+            background: rgba(249,115,22,0.15);
+            color: var(--orange-light);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        /* Generic text content */
+        .page-text-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 48px;
+            margin-bottom: 32px;
+        }
+        .page-text-section p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .page-text-section h2, .page-text-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--orange-light);
+            font-size: 28px;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        .page-text-section ul, .page-text-section ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        .page-text-section li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 8px;
+        }
+
+        /* Gallery image grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .gallery-grid img:hover { transform: scale(1.03); border-color: var(--orange); }
+
+        /* Committee member card */
+        .committee-section {
+            margin-bottom: 40px;
+        }
+        .committee-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: var(--orange-light);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Fix old WP classes */
+        .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+        .flex-col { flex: 1; min-width: 200px; }
+        .text-orange { color: var(--orange-light) !important; }
+        .text-bold { font-weight: 700; }
+        .content-block { margin-bottom: 24px; }
+
+        /* Inline images from content */
+        .inner-content-wrap img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin: 16px 0;
+        }
+        .inner-content-wrap table { width: 100%; }
+        .inner-content-wrap table th, .inner-content-wrap table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+        .inner-content-wrap table th {
+            background: rgba(249,115,22,0.12);
+            color: var(--orange-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .inner-content-wrap table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        @media (max-width: 768px) {
+            .profile-layout { flex-direction: column; }
+            .profile-img-col { width: 100%; }
+            .page-text-section { padding: 24px; }
+            .inner-container { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R & D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research & Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances & Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni & Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty & Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements & Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities & Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular & Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Graduated Student Details 2020</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Graduated Student Details 2020</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="inner-content-wrap">
+        <div class="inner-container">
+            <div class="page-text-section">
+                <div>
+						<div>
+				<div class="content-block">
+									<h2 class="tit">GRADUATED STUDENT DETAILS 2020</h2>
+
+<table class="tbl lato f-16">
+<thead>
+<tr>
+<th>S.No</th>
+<th>Roll No</th>
+<th>Name of the Student</th>
+<th>Mobile No</th>
+</tr>
+</thead>
+<tbody>
+<tr 1'>
+  <td >1</td>
+  <td  >16T21R0001</td>
+  <td  >AREPELLY VISHNUVARDHAN</td>
+  <td  >9492372078</td>
+ </tr>
+ <tr 2'>
+  <td >2</td>
+  <td >16T21R0002</td>
+  <td >AAIRENI VYSHNAVI</td>
+  <td >8500835467</td>
+ </tr>
+ <tr 3'>
+  <td >3</td>
+  <td >16T21R0003</td>
+  <td >ADAMA MANASA</td>
+  <td ></td>
+ </tr>
+ <tr 4'>
+  <td >4</td>
+  <td >16T21R0004</td>
+  <td >ARWA TARAKA MOUNI</td>
+  <td >9493338502</td>
+ </tr>
+ <tr 5'>
+  <td >5</td>
+  <td >16T21R0005</td>
+  <td >BANDLA ALEKHYA REDDY</td>
+  <td >7731057663</td>
+ </tr>
+ <tr 6'>
+  <td >6</td>
+  <td >16T21R0006</td>
+  <td >CHANDRA TEJASWI</td>
+  <td >9010028833</td>
+ </tr>
+ <tr 7'>
+  <td >7</td>
+  <td >16T21R0007</td>
+  <td >CHEKURI KAVYA SREE</td>
+  <td >8106219236</td>
+ </tr>
+ <tr 8'>
+  <td >8</td>
+  <td >16T21R0010</td>
+  <td >CHITLA SOUMYA</td>
+  <td >8341764878</td>
+ </tr>
+ <tr 9'>
+  <td >9</td>
+  <td >16T21R0011</td>
+  <td  >DUSSA BHARATHKUMAR</td>
+ </tr>
+ <tr 10'>
+  <td >10</td>
+  <td >16T21R0012</td>
+  <td >G TEJASWINI</td>
+  <td >9705477016</td>
+ </tr>
+ <tr 11'>
+  <td >11</td>
+  <td >16T21R0013</td>
+  <td >GADEPALLY SUSHMA</td>
+  <td ></td>
+ </tr>
+ <tr 12'>
+  <td >12</td>
+  <td >16T21R0014</td>
+  <td >GANDRU DIVYASRI</td>
+  <td >9494711290</td>
+ </tr>
+ <tr 13'>
+  <td >13</td>
+  <td >16T21R0015</td>
+  <td  >GANGA VARUN SAMRAT</td>
+ </tr>
+ <tr 14'>
+  <td >14</td>
+  <td >16T21R0016</td>
+  <td >GANGIPELLY ARUN KUMAR</td>
+  <td >9849802295</td>
+ </tr>
+ <tr 15'>
+  <td >15</td>
+  <td >16T21R0017</td>
+  <td >GUGULOTH KALPANA</td>
+  <td ></td>
+ </tr>
+ <tr 16'>
+  <td >16</td>
+  <td >16T21R0018</td>
+  <td >JAMBULA SARIKA REDDY</td>
+  <td >9133333067</td>
+ </tr>
+ <tr 17'>
+  <td >17</td>
+  <td >16T21R0019</td>
+  <td >JANGAM RAMYA</td>
+  <td ></td>
+ </tr>
+ <tr 18'>
+  <td >18</td>
+  <td >16T21R0020</td>
+  <td >KAALLAKURI BHARGAVA</td>
+  <td >9666675696</td>
+ </tr>
+ <tr 19'>
+  <td >19</td>
+  <td >16T21R0021</td>
+  <td >KAIRIKA KARUNAKAR</td>
+  <td >8374051791</td>
+ </tr>
+ <tr 20'>
+  <td >20</td>
+  <td >16T21R0022</td>
+  <td >KALLU JONAN AKHIL RAJ</td>
+  <td >9010938265</td>
+ </tr>
+ <tr 21'>
+  <td >21</td>
+  <td >16T21R0023</td>
+  <td >KASIREDDY HARITHA</td>
+  <td ></td>
+ </tr>
+ <tr 22'>
+  <td >22</td>
+  <td >16T21R0024</td>
+  <td >KAVALGAV SUPRIYA</td>
+  <td ></td>
+ </tr>
+ <tr 23'>
+  <td >23</td>
+  <td >16T21R0025</td>
+  <td >KHATIJA FATIMA</td>
+  <td >9949172518</td>
+ </tr>
+ <tr 24'>
+  <td >24</td>
+  <td >16T21R0026</td>
+  <td >KODATI SAIKUMAR</td>
+  <td >8522071190</td>
+ </tr>
+ <tr 25'>
+  <td >25</td>
+  <td >16T21R0027</td>
+  <td >MANEPALLI DINEESHA</td>
+  <td >9866925228</td>
+ </tr>
+ <tr 26'>
+  <td >26</td>
+  <td >16T21R0028</td>
+  <td >MATETI RAVALIKA</td>
+  <td >9010964700</td>
+ </tr>
+ <tr 27'>
+  <td >27</td>
+  <td >16T21R0029</td>
+  <td >MIYAPURAM SAI KRISHNA</td>
+  <td >9441925860</td>
+ </tr>
+ <tr 28'>
+  <td >28</td>
+  <td >16T21R0030</td>
+  <td >MYLA HARIKA</td>
+  <td >9618075509</td>
+ </tr>
+ <tr 29'>
+  <td >29</td>
+  <td >16T21R0031</td>
+  <td >MYLAPALLI ROHAN</td>
+  <td >9492410898</td>
+ </tr>
+ <tr 30'>
+  <td >30</td>
+  <td >16T21R0032</td>
+  <td >NAHIDFATIMA</td>
+  <td >9542391667</td>
+ </tr>
+ <tr 31'>
+  <td >31</td>
+  <td >16T21R0033</td>
+  <td >NANDHIKONDA ANJANI REDDY</td>
+  <td >9949576166</td>
+ </tr>
+ <tr 32'>
+  <td >32</td>
+  <td >16T21R0034</td>
+  <td >NANDIGAM NEEHARIKA</td>
+  <td >9248843004</td>
+ </tr>
+ <tr 33'>
+  <td >33</td>
+  <td >16T21R0035</td>
+  <td >NARISETTY SUDHEERA</td>
+  <td >9963567753</td>
+ </tr>
+ <tr 34'>
+  <td >34</td>
+  <td >16T21R0036</td>
+  <td >PATIL VIJAY KUMAR</td>
+  <td >8008604154</td>
+ </tr>
+ <tr 35'>
+  <td >35</td>
+  <td >16T21R0037</td>
+  <td  >PEDDALA SAIKRISHNA</td>
+ </tr>
+ <tr 36'>
+  <td >36</td>
+  <td >16T21R0038</td>
+  <td >PENTA NIKHIL</td>
+  <td >9492132155</td>
+ </tr>
+ <tr 37'>
+  <td >37</td>
+  <td >16T21R0039</td>
+  <td >PONDURI JYOSANA RANI</td>
+  <td >9704513278</td>
+ </tr>
+ <tr 38'>
+  <td >38</td>
+  <td >16T21R0040</td>
+  <td  >PRATHIKANTAM RAJESHWARI</td>
+ </tr>
+ <tr 39'>
+  <td >39</td>
+  <td >16T21R0041</td>
+  <td >RATHLA SHIRISHA</td>
+  <td ></td>
+ </tr>
+ <tr 40'>
+  <td >40</td>
+  <td >16T21R0042</td>
+  <td >SHAH JANVI HITESHKUMAR</td>
+  <td >9052239964</td>
+ </tr>
+ <tr 41'>
+  <td >41</td>
+  <td >16T21R0043</td>
+  <td >CHITTIREDDY VINEETHA</td>
+  <td >7382632415</td>
+ </tr>
+ <tr 42'>
+  <td >42</td>
+  <td >16T21R0044</td>
+  <td >SHAIK ZAHEERUDDIN</td>
+  <td >9392312004</td>
+ </tr>
+ <tr 43'>
+  <td >43</td>
+  <td >16T21R0045</td>
+  <td >SUBEDARI SAI SHARVANI</td>
+  <td >9949514548</td>
+ </tr>
+ <tr 44'>
+  <td >44</td>
+  <td >16T21R0046</td>
+  <td >SUMAYA BEGUM</td>
+  <td >7386642897</td>
+ </tr>
+ <tr 45'>
+  <td >45</td>
+  <td >16T21R0047</td>
+  <td >CHANDANA SASIKALA</td>
+  <td >9533885249</td>
+ </tr>
+ <tr 46'>
+  <td >46</td>
+  <td >16T21R0048</td>
+  <td >TALARI BALRAJ</td>
+  <td ></td>
+ </tr>
+ <tr 47'>
+  <td >47</td>
+  <td >16T21R0049</td>
+  <td >VULISHA HARINI</td>
+  <td >8121891103</td>
+ </tr>
+ <tr 48'>
+  <td >48</td>
+  <td >16T21R0050</td>
+  <td >VALLAPU UMA RANI</td>
+  <td >9912447588</td>
+ </tr>
+ <tr 49'>
+  <td >49</td>
+  <td >16T21R0051</td>
+  <td >ALAKUNTA DEEKSHA</td>
+  <td >9908209180</td>
+ </tr>
+ <tr 50'>
+  <td >50</td>
+  <td >16T21R0052</td>
+  <td >ALJAPUR GOURAV</td>
+  <td >8463222536</td>
+ </tr>
+ <tr 51'>
+  <td >51</td>
+  <td >16T21R0053</td>
+  <td >ANEM ABHIJEETH</td>
+  <td >9666095936</td>
+ </tr>
+ <tr 52'>
+  <td >52</td>
+  <td >16T21R0054</td>
+  <td >BETHI ARCHANA</td>
+  <td >9000996844</td>
+ </tr>
+ <tr 53'>
+  <td >53</td>
+  <td >16T21R0055</td>
+  <td >BOMMA BHAVANI</td>
+  <td >9849896064</td>
+ </tr>
+ <tr 54'>
+  <td >54</td>
+  <td >16T21R0056</td>
+  <td >KAJAL GULERIA</td>
+  <td >9000253702</td>
+ </tr>
+ <tr 55'>
+  <td >55</td>
+  <td >16T21R0057</td>
+  <td  >DADE RAGHAVENDHAR</td>
+ </tr>
+ <tr 56'>
+  <td >56</td>
+  <td >16T21R0058</td>
+  <td >GAJULA AISHWARYA</td>
+  <td >9492520481</td>
+ </tr>
+ <tr 57'>
+  <td >57</td>
+  <td >16T21R0059</td>
+  <td >GUNDA SAI PRIYA</td>
+  <td >9866977633</td>
+ </tr>
+ <tr 58'>
+  <td >58</td>
+  <td >16T21R0060</td>
+  <td >HANUMANAGARI KAVYA REDDY</td>
+  <td >9951873059</td>
+ </tr>
+ <tr 59'>
+  <td >59</td>
+  <td >16T21R0063</td>
+  <td >KAMMA HARSHITHA</td>
+  <td >040 23061275</td>
+ </tr>
+ <tr 60'>
+  <td >60</td>
+  <td >16T21R0064</td>
+  <td >KORAMPALLY KAVYA REDDY</td>
+  <td >7702451686</td>
+ </tr>
+ <tr 61'>
+  <td >61</td>
+  <td >16T21R0065</td>
+  <td >KOYYADA GNAPIKA</td>
+  <td >9849879107</td>
+ </tr>
+ <tr 62'>
+  <td >62</td>
+  <td >16T21R0066</td>
+  <td >MARRI NAVEEN</td>
+  <td ></td>
+ </tr>
+ <tr 63'>
+  <td >63</td>
+  <td >16T21R0067</td>
+  <td >MENDU NAVYA SRI</td>
+  <td ></td>
+ </tr>
+ <tr 64'>
+  <td >64</td>
+  <td >16T21R0068</td>
+  <td >KOTTARI PRASHANTH</td>
+  <td >9010884363</td>
+ </tr>
+ <tr 65'>
+  <td >65</td>
+  <td >16T21R0069</td>
+  <td >MUDAVATH ARUNA</td>
+  <td ></td>
+ </tr>
+ <tr 66'>
+  <td >66</td>
+  <td >16T21R0070</td>
+  <td >MYSARI SRAVAN KUMAR</td>
+  <td >8462224197</td>
+ </tr>
+ <tr 67'>
+  <td >67</td>
+  <td >16T21R0071</td>
+  <td >N JABILI SRAVYA</td>
+  <td >9493991559</td>
+ </tr>
+ <tr 68'>
+  <td >68</td>
+  <td >16T21R0072</td>
+  <td >NAREDDY MANASWINI REDDY</td>
+  <td >9392010656</td>
+ </tr>
+ <tr 69'>
+  <td >69</td>
+  <td >16T21R0073</td>
+  <td >PANIKARA JYOTHI</td>
+  <td ></td>
+ </tr>
+ <tr 70'>
+  <td >70</td>
+  <td >16T21R0074</td>
+  <td >PASIKA SHASHANK REDDY</td>
+  <td >8978994044</td>
+ </tr>
+ <tr 71'>
+  <td >71</td>
+  <td >16T21R0075</td>
+  <td >PEBBETI SAIRAM</td>
+  <td >9177559595</td>
+ </tr>
+ <tr 72'>
+  <td >72</td>
+  <td >16T21R0076</td>
+  <td >PENDAM PRIYANKA</td>
+  <td >9849345522</td>
+ </tr>
+ <tr 73'>
+  <td >73</td>
+  <td >16T21R0077</td>
+  <td >PITTALA VIDYA</td>
+  <td >9441406150</td>
+ </tr>
+ <tr 74'>
+  <td >74</td>
+  <td >16T21R0078</td>
+  <td >RANGISETTI SRAVANI</td>
+  <td ></td>
+ </tr>
+ <tr 75'>
+  <td >75</td>
+  <td >16T21R0079</td>
+  <td >REVATHY S PILLAI</td>
+  <td >9705526274</td>
+ </tr>
+ <tr 76'>
+  <td >76</td>
+  <td >16T21R0080</td>
+  <td >RUDRA RAVALI</td>
+  <td ></td>
+ </tr>
+ <tr 77'>
+  <td >77</td>
+  <td >16T21R0081</td>
+  <td >SANDA ANUSHA</td>
+  <td >9492444610</td>
+ </tr>
+ <tr 78'>
+  <td >78</td>
+  <td >16T21R0084</td>
+  <td >VADLAMUDI BHAGYA LAKSHMI</td>
+  <td >9177725452</td>
+ </tr>
+ <tr 79'>
+  <td >79</td>
+  <td >16T21R0085</td>
+  <td >VIDYA RATHOD</td>
+  <td >9848351282</td>
+ </tr>
+ <tr 80'>
+  <td >80</td>
+  <td >16T21R0086</td>
+  <td >K NIHARIKA</td>
+  <td >9618623837</td>
+ </tr>
+ <tr 81'>
+  <td >81</td>
+  <td >16T21R0087</td>
+  <td >BODDU MADHURI</td>
+  <td >9032167740</td>
+ </tr>
+ <tr 82'>
+  <td >82</td>
+  <td >16T21R0088</td>
+  <td >KAVITI SUMANTH KUMAR</td>
+  <td >8500216961</td>
+ </tr>
+ <tr 83'>
+  <td >83</td>
+  <td >16T21R0089</td>
+  <td >RASABATTULA POORNA VANI</td>
+  <td >9394242739</td>
+ </tr>
+ <tr 84'>
+  <td >84</td>
+  <td >16T21R0090</td>
+  <td >KANAKAMEDALA SAI SANDEEP</td>
+  <td >9652876500</td>
+ </tr>
+ <tr 85'>
+  <td >85</td>
+  <td >16T21R0091</td>
+  <td >MEHNAZ THAMKEEN</td>
+  <td >9573925679</td>
+ </tr>
+ <tr 86'>
+  <td >86</td>
+  <td >16T21R0092</td>
+  <td >THUMUKUNTA RISHITHA REDDY</td>
+  <td >8106799122</td>
+ </tr>
+ <tr 87'>
+  <td >87</td>
+  <td >16T21R0093</td>
+  <td >KASOJJALA NAGA PRATHYUSHA</td>
+  <td >8330957593</td>
+ </tr>
+ <tr 88'>
+  <td >88</td>
+  <td >16T21R0094</td>
+  <td >G INDU</td>
+  <td >9550720251</td>
+ </tr>
+ <tr 89'>
+  <td >89</td>
+  <td >16T21R0095</td>
+  <td >KOTENKI SRUJANA</td>
+  <td >9491387631</td>
+ </tr>
+ <tr 90'>
+  <td >90</td>
+  <td >16T21R0096</td>
+  <td >MATETI PRIYANKA</td>
+  <td >8978174538</td>
+ </tr>
+ <tr 91'>
+  <td >91</td>
+  <td >16T21R0097</td>
+  <td >CHITTURI JE SAHITHYA DEEPTHI</td>
+  <td >9640502262</td>
+ </tr>
+ <tr 92'>
+  <td >92</td>
+  <td >16T21R0098</td>
+  <td >YATAKARI RENUKA</td>
+  <td >9948998082</td>
+ </tr>
+ <tr 93'>
+  <td >93</td>
+  <td >16T21R0099</td>
+  <td >POLURI REVANTH</td>
+  <td >9505578289</td>
+ </tr>
+ <tr>
+  <td >94</td>
+  <td >16T21R00A0</td>
+  <td >NIGHATH SULTANA</td>
+  <td >9014284859</td>
+ </tr>
+</tbody>
+</table>								</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+		
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+            
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+</body>
+</html>
