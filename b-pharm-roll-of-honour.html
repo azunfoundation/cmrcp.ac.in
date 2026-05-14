@@ -160,12 +160,76 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* Fix old WP classes */
-        .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
-        .flex-col { flex: 1; min-width: 200px; }
-        .text-orange { color: var(--orange-light) !important; }
-        .text-bold { font-weight: 700; }
-        .content-block { margin-bottom: 24px; }
+        /* Accordion Layout */
+        .card-header {
+            background-color: var(--navy-light);
+            padding: 16px 32px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--orange);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .card-header:hover {
+            background-color: var(--navy-mid);
+        }
+        .card-header .flex-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: transparent !important;
+            margin-bottom: 0 !important;
+            gap: 16px;
+        }
+        .card-header .flex-col {
+            flex: initial;
+            min-width: 0;
+        }
+        .card-header .text-bold {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            padding: 0 !important;
+            margin: 0;
+        }
+        .card-header .boxed-btn1 {
+            background-color: var(--orange);
+            color: #ffffff !important;
+            padding: 8px 32px;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-size: 14px;
+            margin: 0;
+            display: inline-block;
+            pointer-events: none;
+        }
+        .card-header.active .boxed-btn1 {
+            background-color: #e06612;
+            transform: translateY(-2px);
+        }
+        .collapse {
+            display: none;
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-top: none;
+            margin-bottom: 24px;
+            margin-top: -12px;
+            border-bottom-left-radius: var(--radius-sm);
+            border-bottom-right-radius: var(--radius-sm);
+        }
+        .collapse.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .titas { color: var(--orange-light); font-size: 20px; font-family: 'Cormorant Garamond', serif; }
 
         /* Inline images from content */
         .inner-content-wrap img {
@@ -889,6 +953,41 @@
     <script src="assets/js/main.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>lucide.createIcons();</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.card-header');
+            headers.forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('aria-controls');
+                    const target = document.getElementById(targetId);
+                    
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    
+                    // Optional: Close all other accordions
+                    document.querySelectorAll('.collapse.show').forEach(el => {
+                        if(el !== target) { el.classList.remove('show'); }
+                    });
+                    document.querySelectorAll('.card-header').forEach(el => {
+                        if(el !== this) { 
+                            el.setAttribute('aria-expanded', 'false'); 
+                            el.classList.remove('active'); 
+                        }
+                    });
+
+                    if (isExpanded) {
+                        this.setAttribute('aria-expanded', 'false');
+                        this.classList.remove('active');
+                        target.classList.remove('show');
+                    } else {
+                        this.setAttribute('aria-expanded', 'true');
+                        this.classList.add('active');
+                        target.classList.add('show');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
