@@ -147,6 +147,53 @@
         }
         .gallery-grid img:hover { transform: scale(1.03); border-color: var(--orange); }
 
+        /* GPAT Ranks grid */
+        .gpat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .gpat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: left;
+            transition: var(--transition);
+        }
+        .gpat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--orange);
+            background: rgba(255,255,255,0.05);
+        }
+        .gpat-card img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            border: 2px solid var(--border);
+        }
+        .gpat-card .rank {
+            color: var(--orange-light);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .gpat-card .name {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        .gpat-card .hno {
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+        }
+
         /* Committee member card */
         .committee-section {
             margin-bottom: 40px;
@@ -533,19 +580,53 @@
         <div class="inner-container">
             <div class="page-text-section">
                 
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-aee895a elementor-section-boxed elementor-section-height-default elementor-section-height-default">
-						<div>
-					<div>
-			<div>
-						<div>
-				<div class="content-block">
-									<h2 class="tit">GPAT RANKS</h2><div class="flex-row"><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/img/logo.jpg" /><p class="lato">GPAT Rank: 3279<br />A.GOURAV<br />(H. No.16T21R0052)</p></div><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/images/cmrcp_migrated/2.jpg" /><p class="lato">GPAT Rank: 504<br />N. MANASWINI<br />(H. No.16T21R0072)</p></div><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/images/cmrcp_migrated/3.jpg" /><p class="lato">GPAT Rank: 2691<br />P. SHASHANK REDDY<br />(H. No.16T21R0074)</p></div><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/images/cmrcp_migrated/4.jpg" /><p class="lato">GPAT Rank: 298<br />P.PRIYANKA<br />(H. No.16T21R0076)</p></div><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/images/cmrcp_migrated/5.jpg" /><p class="lato">GPAT Rank: 13388<br />VIDYA RATHOD<br />(H. No.16T21R0085)</p></div><div class="flex-col"><img decoding="async" class="img-responsive mb-15" src="assets/images/cmrcp_migrated/6.jpg" /><p class="lato">GPAT Rank: 4552<br />K. NIHARIKA<br />(H. No.16T21R0086)</p></div></div>								</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-				</div>
+                <div class="content-block">
+                    <h2 class="tit" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--orange-light); margin-bottom: 16px;">GPAT RANKS</h2>
+                    
+                    <div class="gpat-grid">
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/1.png" alt="A. GOURAV" />
+                            <div class="rank">GPAT Rank: 3279</div>
+                            <div class="name">A. GOURAV</div>
+                            <div class="hno">(H. No.16T21R0052)</div>
+                        </div>
+                        
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/2.png" alt="N. MANASWINI" />
+                            <div class="rank">GPAT Rank: 504</div>
+                            <div class="name">N. MANASWINI</div>
+                            <div class="hno">(H. No.16T21R0072)</div>
+                        </div>
+
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/3.png" alt="P. SHASHANK REDDY" />
+                            <div class="rank">GPAT Rank: 2691</div>
+                            <div class="name">P. SHASHANK REDDY</div>
+                            <div class="hno">(H. No.16T21R0074)</div>
+                        </div>
+
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/4.png" alt="P. PRIYANKA" />
+                            <div class="rank">GPAT Rank: 298</div>
+                            <div class="name">P. PRIYANKA</div>
+                            <div class="hno">(H. No.16T21R0076)</div>
+                        </div>
+
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/5.png" alt="VIDYA RATHOD" />
+                            <div class="rank">GPAT Rank: 13388</div>
+                            <div class="name">VIDYA RATHOD</div>
+                            <div class="hno">(H. No.16T21R0085)</div>
+                        </div>
+
+                        <div class="gpat-card">
+                            <img decoding="async" src="assets/images/cmrcp_migrated/7.png" alt="K. NIHARIKA" />
+                            <div class="rank">GPAT Rank: 4552</div>
+                            <div class="name">K. NIHARIKA</div>
+                            <div class="hno">(H. No.16T21R0086)</div>
+                        </div>
+                    </div>
+                </div>
 		
 			
 			
