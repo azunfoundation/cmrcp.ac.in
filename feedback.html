@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback | CMR College of Pharmacy</title>
+    <meta name="description" content="Submit your feedback to CMR College of Pharmacy. Your opinions help us improve our academic programs and campus experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .inner-content-wrap { background: var(--navy); min-height: 60vh; padding: 64px 0 80px; }
+        .inner-container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+        .feedback-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+        }
+        .feedback-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            color: var(--orange-light);
+            margin-bottom: 8px;
+        }
+        .feedback-card p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+            background: rgba(255,255,255,0.07);
+        }
+        .form-group select option { background: #0d1b3e; color: #fff; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .rating-group { display: flex; gap: 12px; flex-wrap: wrap; }
+        .rating-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .rating-btn:hover, .rating-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            padding: 14px 36px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+        .submit-btn:hover { background: #ea580c; transform: translateY(-2px); }
+        @media (max-width: 640px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .feedback-card { padding: 24px; }
+            .inner-container { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+      <ul class="nav-links" role="list">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Home <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="about-college.html">About College</a></li>
+            <li><a href="vision-mission.html">Vision &amp; Mission</a></li>
+            <li><a href="latest-news.html">Latest News</a></li>
+            <li><a href="newsletter.html">College News Letters</a></li>
+            <li><a href="college-magazine.html">College Magazine</a></li>
+            <li><a href="NSS.html">NSS</a></li>
+            <li><a href="http://cmrcp.ac.in/wp-content/uploads/2025/02/nirf.pdf" target="_blank">NIRF</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/5.-SIF-Report.pdf" target="_blank">SIF</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/6.-approval.pdf" target="_blank">Approvals</a></li>
+            <li><a href="Files/NBA Reports/NBA-report.pdf" target="_blank">NBA Report</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2026/02/e-NBA-SAR-CMRCP.pdf" target="_blank">e-NBA SAR</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu"><a href="#">Administration <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="principal.html">Principal</a></li>
+                <li><a href="administrative-officer.html">Administrative Officer</a></li>
+                <li><a href="accounts-audit-reports.html">Accounts Audit Reports</a></li>
+              </ul>
+            </li>
+            <li><a href="Management.html">Management</a></li>
+            <li><a href="governing-body.html">Governing Body</a></li>
+            <li class="has-submenu"><a href="#">Facilities <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="library-2.html">Library</a></li>
+                <li><a href="computer-lab.html">Computer Lab</a></li>
+                <li><a href="transportation.html">Transportation</a></li>
+                <li><a href="hostel.html">Hostel</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="#">Infrastructure <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="class-rooms.html">Class Rooms</a></li>
+                <li><a href="laboratories.html">Laboratories</a></li>
+              </ul>
+            </li>
+            <li><a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="college-academic-committee.html">College Academic Committee</a></li>
+            <li><a href="admission-procedure.html">Admission procedure</a></li>
+            <li><a href="fee-details.html">Fee Details</a></li>
+            <li><a href="https://jntuh.ac.in/academic-calendars">Academic Calendars</a></li>
+            <li class="has-submenu"><a href="#">Downloads <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="https://jntuh.ac.in/syllabus">Syllabus</a></li>
+                <li><a href="https://jntuh.ac.in/time-table">Examination Time Tables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R &amp; D <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="members.html">Members</a></li>
+            <li><a href="faculty-innovations.html">Faculty Innovations</a></li>
+            <li><a href="sponsored-projects.html">Sponsored Projects</a></li>
+            <li><a href="consultancy-projects.html">Consultancy Projects</a></li>
+            <li><a href="research-review-publications.html">Research &amp; Review Publications</a></li>
+            <li><a href="patents.html">Patents/Copy Rights</a></li>
+            <li><a href="books.html">Books</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu"><a href="#">B.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="b-pharm-about.html">About</a></li>
+                <li><a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's</a></li>
+                <li><a href="b-pharm-hod.html">HOD's</a></li>
+                <li><a href="b-pharm-faculty-list.html">Faculty List</a></li>
+                <li><a href="b-pharm-roll-of-honour.html">Roll Honour</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="#">M.Pharmacy <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li class="has-submenu"><a href="#">Pharmaceutics <span class="chevron-right">&rsaquo;</span></a>
+                  <ul class="submenu dropdown">
+                    <li><a href="pharmaceutics-about.html">About</a></li>
+                    <li><a href="pharmaceutics-faculty-list.html">Faculty List</a></li>
+                    <li><a href="pharmaceutics-roll-honour.html">Roll Honour</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Pharmaceutical Analysis <span class="chevron-right">&rsaquo;</span></a>
+                  <ul class="submenu dropdown">
+                    <li><a href="pa-about.html">About</a></li>
+                    <li><a href="pa-faculty-details.html">Faculty List</a></li>
+                    <li><a href="pa-roll-honour.html">Roll Honour</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Pharmacology <span class="chevron-right">&rsaquo;</span></a>
+                  <ul class="submenu dropdown">
+                    <li><a href="pharmacology-about.html">About</a></li>
+                    <li><a href="pharmacology-faculty-details.html">Faculty List</a></li>
+                    <li><a href="pharmacology-roll-honour.html">Roll Honour</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="#">Pharm. D <span class="chevron-right">&rsaquo;</span></a>
+              <ul class="submenu dropdown">
+                <li><a href="pharmd-about.html">About</a></li>
+                <li><a href="pharmd-faculty-details.html">Faculty List</a></li>
+                <li><a href="pharmad-roll-honour.html">Roll Honour</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="placement-team.html">Placement Team</a></li>
+            <li><a href="placement-details.html">Placement Details</a></li>
+            <li><a href="companies-visited.html">Companies Visited</a></li>
+            <li><a href="upcoming-placements.html">Upcoming Placements</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">&#9662;</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees &amp; Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances &amp; Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni &amp; Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty &amp; Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements &amp; Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities &amp; Gallery <span class="chevron">&#9662;</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+            <li><a href="extra-curricular.html">Extra Curricular &amp; Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link active">Student Feedback</a></li>
+        <li class="nav-item"><a href="NSS.html" class="nav-link">NSS</a></li>
+      </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about-college.html">About College</a>
+        <a href="programs.html">Programs Offered</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="placements.html">Placements</a>
+        <a href="research.html">R&D</a>
+        <a href="campus-life.html">Campus Life</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="feedback.html">Student Feedback</a>
+        <a href="NSS.html">NSS</a>
+    </div>
+
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Student Feedback</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Student Feedback</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="inner-content-wrap">
+        <div class="inner-container">
+            <div class="feedback-card">
+                <h2>Share Your Feedback</h2>
+                <p>Your feedback helps us continuously improve the quality of education and campus experience at CMR College of Pharmacy. All responses are confidential.</p>
+
+                <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="studentName">Full Name</label>
+                            <input type="text" id="studentName" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rollNo">Roll Number</label>
+                            <input type="text" id="rollNo" placeholder="e.g. 21B51A0401">
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="program">Program</label>
+                            <select id="program">
+                                <option value="">Select Program</option>
+                                <option>B.Pharmacy</option>
+                                <option>M.Pharmacy – Pharmaceutics</option>
+                                <option>M.Pharmacy – Pharmaceutical Analysis</option>
+                                <option>M.Pharmacy – Pharmacology</option>
+                                <option>Pharm.D</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Academic Year</label>
+                            <select id="year">
+                                <option value="">Select Year</option>
+                                <option>1st Year</option>
+                                <option>2nd Year</option>
+                                <option>3rd Year</option>
+                                <option>4th Year</option>
+                                <option>5th Year</option>
+                                <option>6th Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Overall Satisfaction</label>
+                        <div class="rating-group">
+                            <button type="button" class="rating-btn" onclick="setRating(this)">Excellent</button>
+                            <button type="button" class="rating-btn" onclick="setRating(this)">Good</button>
+                            <button type="button" class="rating-btn" onclick="setRating(this)">Average</button>
+                            <button type="button" class="rating-btn" onclick="setRating(this)">Below Average</button>
+                            <button type="button" class="rating-btn" onclick="setRating(this)">Poor</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="teaching">Teaching Quality</label>
+                        <select id="teaching">
+                            <option value="">Rate the teaching quality</option>
+                            <option>Excellent</option>
+                            <option>Good</option>
+                            <option>Average</option>
+                            <option>Below Average</option>
+                            <option>Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="infrastructure">Infrastructure &amp; Facilities</label>
+                        <select id="infrastructure">
+                            <option value="">Rate infrastructure &amp; facilities</option>
+                            <option>Excellent</option>
+                            <option>Good</option>
+                            <option>Average</option>
+                            <option>Below Average</option>
+                            <option>Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suggestions">Suggestions / Comments</label>
+                        <textarea id="suggestions" placeholder="Share your suggestions for improvement or any other comments..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i data-lucide="send" style="width:18px;height:18px;"></i>
+                        Submit Feedback
+                    </button>
+                </form>
+
+                <div id="successMsg" style="display:none; margin-top:24px; padding:20px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius-sm); color:#4ade80; font-size:15px;">
+                    ✓ Thank you! Your feedback has been submitted successfully.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about-college.html">About College</a>
+                    <a href="vision-mission.html">Vision &amp; Mission</a>
+                    <a href="latest-news.html">Latest News</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="NSS.html">NSS</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="admission-procedure.html">Admission Procedure</a>
+                    <a href="fee-details.html">Fee Details</a>
+                    <a href="https://jntuh.ac.in/syllabus">Syllabus</a>
+                    <a href="library-2.html">Library</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;"><strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.</span>
+                    <span style="color:var(--text-muted);font-size:14px;margin-top:8px;"><strong>Phone:</strong> +91 7032466693</span>
+                    <span style="color:var(--text-muted);font-size:14px;"><strong>Email:</strong> cmrcollegeofpharmacy@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 CMR College of Pharmacy. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+        function setRating(btn) {
+            document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        function submitFeedback(e) {
+            e.preventDefault();
+            document.getElementById('feedbackForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
