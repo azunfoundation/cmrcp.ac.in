@@ -142,13 +142,33 @@
         @media (max-width: 992px) {
             .hero-content, .about-grid, .hl-grid, .news-tour { grid-template-columns: 1fr; }
             .hero-cards { display: none; }
-            .prog-grid { grid-template-columns: 1fr; }
+            .prog-grid { grid-template-columns: 1fr 1fr; }
             .rank-grid { grid-template-columns: repeat(2, 1fr); }
             .place-stats { flex-direction: column; }
+            .news-col, .tour-col { padding: 60px 6% !important; }
+            .stats-section { padding: 48px 20px; }
         }
-        @media (max-width: 600px) {
-            .stats-grid, .rank-grid { grid-template-columns: 1fr; }
-            .hero-stats-bar { flex-direction: column; gap: 16px; }
+        @media (max-width: 768px) {
+            .prog-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .rank-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats-bar { flex-wrap: wrap; gap: 20px; }
+            .hl-grid { gap: 12px; }
+            .hl-item { padding: 14px; }
+            .news-col, .tour-col { padding: 48px 16px !important; }
+            .place-stats { gap: 14px; }
+            .place-stat { padding: 20px; }
+            .tour-col h2 { font-size: 28px !important; }
+            .tour-col p { font-size: 15px !important; }
+            .marquee-wrapper { padding: 20px 0; }
+            .stats-section { padding: 44px 16px; }
+            .stat-number-wrap { font-size: 36px; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .rank-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats-bar { flex-direction: column; gap: 14px; }
+            .stat-box { padding: 20px; }
         }
     </style>
 </head>
@@ -170,7 +190,7 @@
     <header id="header">
         <div class="header-top">
             <a href="index.html" class="nav-logo">
-                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 60px; max-height: 70px; max-width: 100%; display: block; object-fit: contain;">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:60px;max-height:60px;max-width:calc(100vw - 100px);width:auto;min-width:0;object-fit:contain;display:block;">
             </a>
             <div class="header-contact hide-mobile">
                 <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
@@ -477,17 +497,87 @@
 
 
     <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobile-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About College</a>
-        <a href="programs.html">Programs Offered</a>
-        <a href="admissions.html">Admissions</a>
-        <a href="placements.html">Placements</a>
-        <a href="research.html">R&D</a>
-        <a href="campus-life.html">Campus Life</a>
-        <a href="infrastructure.html">Infrastructure</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact Us</a>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation Menu">
+        <div class="mobile-menu-header">
+            <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:40px;object-fit:contain;background:#fff;padding:4px 8px;border-radius:6px;">
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close Menu">&#x2715;</button>
+        </div>
+        <div class="mobile-menu-body">
+            <a href="index.html" class="mob-nav-link">Home</a>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">About Us <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="about-college.html">About College</a>
+                    <a href="vision-mission.html">Vision &amp; Mission</a>
+                    <a href="principal.html">Principal</a>
+                    <a href="governing-body.html">Governing Body</a>
+                    <a href="Management.html">Management</a>
+                    <a href="latest-news.html">Latest News</a>
+                    <a href="newsletter.html">College News Letters</a>
+                    <a href="NSS.html">NSS</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Academics <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="college-academic-committee.html">College Academic Committee</a>
+                    <a href="admission-procedure.html">Admission Procedure</a>
+                    <a href="fee-details.html">Fee Details</a>
+                    <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars</a>
+                    <a href="https://jntuh.ac.in/syllabus">Syllabus</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Programs Offered <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="b-pharm-about.html">B.Pharmacy</a>
+                    <a href="pharmaceutics-about.html">M.Pharmacy – Pharmaceutics</a>
+                    <a href="pa-about.html">M.Pharmacy – Pharmaceutical Analysis</a>
+                    <a href="pharmacology-about.html">M.Pharmacy – Pharmacology</a>
+                    <a href="pharmd-about.html">Pharm.D</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">R &amp; D <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="members.html">Members</a>
+                    <a href="faculty-innovations.html">Faculty Innovations</a>
+                    <a href="sponsored-projects.html">Sponsored Projects</a>
+                    <a href="patents.html">Patents/Copy Rights</a>
+                    <a href="research-review-publications.html">Research &amp; Review Publications</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Placements <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="placement-team.html">Placement Team</a>
+                    <a href="placement-details.html">Placement Details</a>
+                    <a href="companies-visited.html">Companies Visited</a>
+                    <a href="upcoming-placements.html">Upcoming Placements</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Activities &amp; Gallery <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="main-gallery.html">Gallery</a>
+                    <a href="event-gallery.html">Event Gallery</a>
+                    <a href="conferences-seminars.html">Conferences/Seminars</a>
+                    <a href="workshops.html">Workshops</a>
+                    <a href="guest-lectures.html">Guest Lectures</a>
+                    <a href="extra-curricular.html">Extra Curricular Activities</a>
+                </div>
+            </div>
+
+            <a href="contact.html" class="mob-nav-link">Contact Us</a>
+            <a href="feedback.html" class="mob-nav-link">Student Feedback</a>
+            <a href="admissions.html" class="mobile-menu-apply">&#128196; Apply Now 2025-26</a>
+        </div>
     </div>
 
     <!-- TICKER -->
@@ -533,24 +623,37 @@
             font-size: 22px; color: rgba(255,255,255,0.9); margin-bottom: 48px; font-weight: 300;
         }
         .hero-centered-actions {
-            display: flex; gap: 20px; justify-content: center;
+            display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
         }
         .pharmacy-focus-section {
-            background: #ffffff; padding: 100px 24px; color: var(--navy); text-align: center;
+            background: #ffffff; padding: 80px 24px; color: var(--navy); text-align: center;
         }
         .focus-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 60px auto 0;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1200px; margin: 48px auto 0;
         }
         .focus-card {
-            background: #f8fafc; padding: 40px; border-radius: 100px 100px 16px 16px; border: 1px solid #e2e8f0;
+            background: #f8fafc; padding: 36px 28px; border-radius: 80px 80px 16px 16px; border: 1px solid #e2e8f0;
             transition: var(--transition); box-shadow: var(--shadow-sm);
         }
         .focus-card:hover { transform: translateY(-10px); border-color: var(--orange); box-shadow: var(--shadow-md); }
         .focus-card .icon-wrap {
-            width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border: 2px solid var(--orange); color: var(--orange); box-shadow: 0 10px 20px rgba(249,115,22,0.1);
+            width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px solid var(--orange); color: var(--orange); box-shadow: 0 10px 20px rgba(249,115,22,0.1);
         }
-        .focus-card h3 { font-size: 22px; font-family: 'Playfair Display', serif; margin-bottom: 16px; color: var(--navy); }
-        .focus-card p { color: #64748b; font-size: 15px; }
+        .focus-card h3 { font-size: 20px; font-family: 'Playfair Display', serif; margin-bottom: 14px; color: var(--navy); }
+        .focus-card p { color: #64748b; font-size: 14px; line-height: 1.6; }
+        @media (max-width: 768px) {
+            .hero-centered { padding: 90px 16px 60px; min-height: 80vh; }
+            .hero-centered-desc { font-size: 16px; margin-bottom: 32px; }
+            .hero-centered-title { letter-spacing: -0.5px; }
+            .focus-grid { grid-template-columns: 1fr; gap: 20px; }
+            .pharmacy-focus-section { padding: 52px 16px; }
+            .focus-card { border-radius: 40px 40px 16px 16px; padding: 28px 20px; }
+            .hero-centered-actions a { width: 100%; max-width: 260px; }
+        }
+        @media (max-width: 480px) {
+            .hero-centered { padding: 80px 14px 48px; }
+            .hero-centered-desc { font-size: 15px; }
+        }
         </style>
     <section class="hero-centered">
         <div class="hero-centered-content fade-up">

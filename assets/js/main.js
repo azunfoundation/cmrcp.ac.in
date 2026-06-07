@@ -15,11 +15,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Mobile Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+    function openMenu() {
+        if (hamburger) hamburger.classList.add('open');
+        if (mobileMenu) mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        if (hamburger) hamburger.classList.remove('open');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+        });
+    }
+
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMenu);
+    }
+
+    // Accordion sub-menus in mobile menu
+    const mobNavGroups = document.querySelectorAll('.mob-nav-group');
+    mobNavGroups.forEach(group => {
+        const title = group.querySelector('.mob-nav-title');
+        if (title) {
+            title.addEventListener('click', () => {
+                const isOpen = group.classList.contains('open');
+                // Close all other groups
+                mobNavGroups.forEach(g => g.classList.remove('open'));
+                // Toggle this one
+                if (!isOpen) {
+                    group.classList.add('open');
+                }
+            });
+        }
+    });
+
+    // Close menu on link click (navigation)
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('.mob-sub-menu a, .mob-nav-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
     }
 

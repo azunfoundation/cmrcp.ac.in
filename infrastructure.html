@@ -53,7 +53,7 @@
     <header id="header">
         <div class="header-top">
             <a href="index.html" class="nav-logo">
-                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height: 70px; display: block; min-width: 150px; object-fit: contain;">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:60px;max-height:60px;max-width:calc(100vw - 100px);width:auto;min-width:0;object-fit:contain;display:block;">
             </a>
             <div class="header-contact hide-mobile">
                 <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
@@ -359,17 +359,87 @@
     </header>
 
     <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobile-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About College</a>
-        <a href="programs.html">Programs Offered</a>
-        <a href="admissions.html">Admissions</a>
-        <a href="placements.html">Placements</a>
-        <a href="research.html">R&D</a>
-        <a href="campus-life.html">Campus Life</a>
-        <a href="infrastructure.html">Infrastructure</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact Us</a>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation Menu">
+        <div class="mobile-menu-header">
+            <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:40px;object-fit:contain;background:#fff;padding:4px 8px;border-radius:6px;">
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close Menu">&#x2715;</button>
+        </div>
+        <div class="mobile-menu-body">
+            <a href="index.html" class="mob-nav-link">Home</a>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">About Us <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="about-college.html">About College</a>
+                    <a href="vision-mission.html">Vision &amp; Mission</a>
+                    <a href="principal.html">Principal</a>
+                    <a href="governing-body.html">Governing Body</a>
+                    <a href="Management.html">Management</a>
+                    <a href="latest-news.html">Latest News</a>
+                    <a href="newsletter.html">College News Letters</a>
+                    <a href="NSS.html">NSS</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Academics <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="college-academic-committee.html">College Academic Committee</a>
+                    <a href="admission-procedure.html">Admission Procedure</a>
+                    <a href="fee-details.html">Fee Details</a>
+                    <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars</a>
+                    <a href="https://jntuh.ac.in/syllabus">Syllabus</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Programs Offered <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="b-pharm-about.html">B.Pharmacy</a>
+                    <a href="pharmaceutics-about.html">M.Pharmacy &#8211; Pharmaceutics</a>
+                    <a href="pa-about.html">M.Pharmacy &#8211; Pharmaceutical Analysis</a>
+                    <a href="pharmacology-about.html">M.Pharmacy &#8211; Pharmacology</a>
+                    <a href="pharmd-about.html">Pharm.D</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">R &amp; D <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="members.html">Members</a>
+                    <a href="faculty-innovations.html">Faculty Innovations</a>
+                    <a href="sponsored-projects.html">Sponsored Projects</a>
+                    <a href="patents.html">Patents/Copy Rights</a>
+                    <a href="research-review-publications.html">Research &amp; Review Publications</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Placements <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="placement-team.html">Placement Team</a>
+                    <a href="placement-details.html">Placement Details</a>
+                    <a href="companies-visited.html">Companies Visited</a>
+                    <a href="upcoming-placements.html">Upcoming Placements</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Activities &amp; Gallery <span class="mob-chevron">&#9660;</span></button>
+                <div class="mob-sub-menu">
+                    <a href="main-gallery.html">Gallery</a>
+                    <a href="event-gallery.html">Event Gallery</a>
+                    <a href="conferences-seminars.html">Conferences/Seminars</a>
+                    <a href="workshops.html">Workshops</a>
+                    <a href="guest-lectures.html">Guest Lectures</a>
+                    <a href="extra-curricular.html">Extra Curricular Activities</a>
+                </div>
+            </div>
+
+            <a href="contact.html" class="mob-nav-link">Contact Us</a>
+            <a href="feedback.html" class="mob-nav-link">Student Feedback</a>
+            <a href="admissions.html" class="mobile-menu-apply">&#128196; Apply Now 2025-26</a>
+        </div>
     </div>
 
     
