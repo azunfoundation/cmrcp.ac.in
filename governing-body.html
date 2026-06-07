@@ -191,11 +191,19 @@
         }
         .inner-content-wrap table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
 
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
             .profile-layout { flex-direction: column; }
             .profile-img-col { width: 100%; }
-            .page-text-section { padding: 24px; }
-            .inner-container { padding: 0 16px; }
+            .page-text-section { padding: 20px 16px; }
+            .inner-container { padding: 0 12px; }
+            .page-text-section h2, .page-text-section h3, h2.tit, h2.three { font-size: 22px !important; margin-top: 20px; line-height: 1.3; }
+            .page-text-section p, .page-text-section li, p.one { font-size: 15px !important; line-height: 1.6; }
+            .profile-name { font-size: 24px; }
+            .profile-designation { font-size: 13px; }
+            .profile-bio { font-size: 14px; line-height: 1.6; }
+            .data-table th, .inner-content-wrap table th { font-size: 12px; padding: 10px; }
+            .data-table td, .inner-content-wrap table td { font-size: 13px; padding: 10px; }
+            .committee-title { font-size: 22px; }
         }
     </style>
 </head>
