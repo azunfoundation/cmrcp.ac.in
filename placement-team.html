@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
+        <style>
         /* ===== INNER PAGE CONTENT STYLES ===== */
         .inner-content-wrap {
             background: var(--navy);
@@ -21,37 +21,141 @@
             padding: 0 32px;
         }
 
-        /* Profile card layout */
-        .profile-layout {
+        /* ===== PREMIUM EXECUTIVE DESIGN SYSTEM ===== */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .executive-card {
             display: flex;
             gap: 48px;
-            align-items: flex-start;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
+            background: linear-gradient(135deg, rgba(26,45,90,0.45) 0%, rgba(13,27,62,0.7) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-lg);
-            padding: 40px;
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
         }
-        .profile-img-col {
+
+        .executive-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, rgba(249,115,22,0) 70%);
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        .executive-card:hover {
+            border-color: rgba(249, 115, 22, 0.25);
+            box-shadow: 0 16px 48px rgba(249, 115, 22, 0.08), var(--shadow-md);
+        }
+
+        .executive-image-wrap {
             flex-shrink: 0;
-            width: 200px;
-            text-align: center;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
         }
-        .profile-img-col img {
-            width: 180px;
-            height: 200px;
-            object-fit: cover;
+
+        .image-inner {
+            width: 220px;
+            height: 250px;
             border-radius: var(--radius-md);
-            border: 3px solid var(--orange);
+            overflow: hidden;
+            position: relative;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--navy-mid) 100%);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: var(--transition);
         }
-        .profile-text-col { flex: 1; }
-        .profile-name {
+
+        .image-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-md) - 4px);
+            transition: var(--transition);
+        }
+
+        .executive-card:hover .image-inner img {
+            transform: scale(1.03);
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        .executive-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .executive-subtitle {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .executive-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
+            font-size: 40px;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 4px;
+            line-height: 1.1;
+            margin-bottom: 6px;
         }
-        .profile-designation {
+
+        .executive-role {
             font-size: 15px;
             font-weight: 700;
             color: var(--orange-light);
@@ -59,151 +163,288 @@
             letter-spacing: 1px;
             margin-bottom: 24px;
         }
-        .profile-bio {
+
+        .executive-bio {
             font-size: 15px;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.9;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            text-align: justify;
         }
 
-        /* Data table styles */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.03);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            margin: 32px 0;
-            border: 1px solid var(--border);
-        }
-        .data-table th {
-            background: rgba(249,115,22,0.15);
-            color: var(--orange-light);
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 14px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        .data-table td {
-            padding: 12px 20px;
-            font-size: 14px;
-            color: rgba(255,255,255,0.85);
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
-        }
-        .data-table tr:last-child td { border-bottom: none; }
-        .data-table tr:hover td { background: rgba(255,255,255,0.03); }
-        .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-
-        /* Generic text content */
-        .page-text-section {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 40px 48px;
-            margin-bottom: 32px;
-        }
-        .page-text-section p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.9;
-            margin-bottom: 16px;
-        }
-        .page-text-section h2, .page-text-section h3 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--orange-light);
-            font-size: 28px;
-            margin-bottom: 16px;
-            margin-top: 32px;
-        }
-        .page-text-section ul, .page-text-section ol {
-            padding-left: 24px;
-            margin-bottom: 16px;
-        }
-        .page-text-section li {
-            font-size: 15px;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.9;
-            margin-bottom: 8px;
+        .bio-lead {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
         }
 
-        /* Gallery image grid */
-        .gallery-grid {
+        .credentials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
-            margin-top: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
         }
-        .gallery-grid img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .gallery-grid img:hover { transform: scale(1.03); border-color: var(--orange); }
 
-        /* Committee member card */
-        .committee-section {
-            margin-bottom: 40px;
+        .credential-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            transition: var(--transition);
         }
-        .committee-title {
+
+        .credential-item:hover {
+            background: rgba(249,115,22,0.06);
+            border-color: rgba(249,115,22,0.2);
+            transform: translateY(-2px);
+        }
+
+        .credential-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: rgba(249,115,22,0.1);
+            color: var(--orange-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(249,115,22,0.15);
+        }
+
+        .credential-icon i {
+            width: 22px;
+            height: 22px;
+        }
+
+        .credential-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .credential-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .credential-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ===== CONTACT / CTA SECTION ===== */
+        .contact-cta-card {
+            background: linear-gradient(135deg, rgba(26,45,90,0.3) 0%, rgba(13,27,62,0.5) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .contact-cta-card:hover {
+            border-color: rgba(249, 115, 22, 0.15);
+        }
+
+        .contact-cta-card::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(249,115,22,0.05) 0%, rgba(249,115,22,0) 70%);
+            pointer-events: none;
+            filter: blur(20px);
+        }
+
+        .cta-heading-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(249,115,22,0.1);
+            color: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(249,115,22,0.2);
+        }
+
+        .cta-icon i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 26px;
-            color: var(--orange-light);
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* Fix old WP classes */
-        .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
-        .flex-col { flex: 1; min-width: 200px; }
-        .text-orange { color: var(--orange-light) !important; }
-        .text-bold { font-weight: 700; }
-        .content-block { margin-bottom: 24px; }
-
-        /* Inline images from content */
-        .inner-content-wrap img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--radius-sm);
-            margin: 16px 0;
-        }
-        .inner-content-wrap table { width: 100%; }
-        .inner-content-wrap table th, .inner-content-wrap table td {
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            font-size: 14px;
-            color: rgba(255,255,255,0.85);
-        }
-        .inner-content-wrap table th {
-            background: rgba(249,115,22,0.12);
-            color: var(--orange-light);
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 12px;
+            color: #fff;
             letter-spacing: 0.5px;
         }
-        .inner-content-wrap table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
 
-                @media (max-width: 768px) {
-            .profile-layout { flex-direction: column; }
-            .profile-img-col { width: 100%; }
-            .page-text-section { padding: 20px 16px; }
-            .inner-container { padding: 0 12px; }
-            .page-text-section h2, .page-text-section h3, h2.tit, h2.three { font-size: 22px !important; margin-top: 20px; line-height: 1.3; }
-            .page-text-section p, .page-text-section li, p.one { font-size: 15px !important; line-height: 1.6; }
-            .profile-name { font-size: 24px; }
-            .profile-designation { font-size: 13px; }
-            .profile-bio { font-size: 14px; line-height: 1.6; }
-            .data-table th, .inner-content-wrap table th { font-size: 12px; padding: 10px; }
-            .data-table td, .inner-content-wrap table td { font-size: 13px; padding: 10px; }
-            .committee-title { font-size: 22px; }
+        .cta-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .contact-card.interactive:hover {
+            background: rgba(249,115,22,0.04);
+            border-color: rgba(249,115,22,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .contact-card-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--orange-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+        }
+
+        .contact-card.interactive:hover .contact-card-icon {
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
+            transform: scale(1.08);
+        }
+
+        .contact-card-icon i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .contact-card-details {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .contact-value-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .cta-btn-wrap {
+            display: flex;
+            margin-top: 8px;
+        }
+
+        .cta-primary-btn {
+            background: linear-gradient(135deg, var(--orange) 0%, #ea580c 100%);
+            color: #fff;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 100%);
+        }
+
+        .cta-primary-btn i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== RESPONSIVE TWEAKS ===== */
+        @media (max-width: 992px) {
+            .executive-card {
+                flex-direction: column;
+                gap: 36px;
+                padding: 32px;
+            }
+            .executive-image-wrap {
+                width: 100%;
+            }
+            .inner-container {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .credentials-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .executive-title {
+                font-size: 32px;
+            }
+            .contact-cta-card {
+                padding: 28px 20px;
+            }
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
         }
     </style>
 </head>
@@ -245,7 +486,7 @@
             <li><a href="newsletter.html">College News Letters</a></li>
             <li><a href="college-magazine.html">College Magazine</a></li>
             <li><a href="NSS.html">NSS</a></li>
-            <li><a href="http://cmrcp.ac.in/wp-content/uploads/2025/02/nirf.pdf" target="_blank">NIRF</a></li>
+            <li><a href="Files/NIRF2026.pdf" target="_blank">NIRF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/5.-SIF-Report.pdf" target="_blank">SIF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/6.-approval.pdf" target="_blank">Approvals</a></li>
             <li><a href="Files/NBA Reports/NBA-report.pdf" target="_blank">NBA Report</a></li>
@@ -625,24 +866,93 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <div class="inner-content-wrap">
+        <div class="inner-content-wrap">
         <div class="inner-container">
-            <div class="page-text-section">
-                
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-aee895a elementor-section-boxed elementor-section-height-default elementor-section-height-default">
-						<div>
-					<div>
-			<div>
-						<div>
-				<div class="content-block">
-									<div class="container-fluid"><div class="container"><div class="flex-row"><div class="flex-col"><img decoding="async" class="img-responsive" src="assets/images/cmrcp_migrated/pc5.jpg" /></div><div class="flex-col"><h2 class="text-bold">Dr P. Hima Bindu</h2><p class="text-bold">Associate Dean</p><p class="subtitl">Training &amp; Placement</p><hr /><div class="lato text-justify"><p class="lato">Dr P.Hima Bindu, has 16 years of corporate ,teaching and research experience. She has completed MBA,B.Ed ,M.Phil. She was awarded Ph.D in HRM from Osmania University. She has presented papers in various conferences and published over 13 articles in the area of HRM.She has completed certification in HR Analytics from IIM Rohtak.Her vast experience in student management allows her to mentor and manage students. She has handled training of students and worked towards preparing them for industry readiness.</p></div></div></div></div></div><div class="container-fluid"><div class="container"><div class="flex-row"><div class="flex-col"><h2 class="text-bold">Dr. V. Venkata Rajesham</h2><p class="text-bold">M. Pharm., Ph. D</p><p class="subtitl">Associate Professor, Department of Pharmacology &amp; TPO</p><hr /><div class="lato text-justify"><p class="lato">Dr. V. Venkata Rajesham, He is currently working as Associate Professor in the Department of Pharmacology. He has 12 years of teaching and research experience. He has published more than 22 research articles in reputed journals and guided 3 M. Pharmacy projects. He is the Training and Placement Officer from CMRCP. He has coordinated the placements of more than 60 students in various Pharmaceutical domains. He is also the life member of Indian Pharmaceutical Graduates Association.</p></div></div><div class="flex-col"><img decoding="async" class="img-responsive" src="assets/images/cmrcp_migrated/Venkata_Rajesham.jpg" /></div></div></div></div><div class="container-fluid"><div class="container"><div class="flex-row"><h2 class="tit">FOR CAMPUS RECRUITMENT ASSISTANCE PLEASE CONTACT</h2><p class="subtitl">Name: Dr P.Hima Bindu</p><p class="subtitl">Mobile no: 9248727214 / 9704409222</p><p class="subtitl">Email ID :placements@cmrgroup.org , cmrgi.tpc@gmail.com, cmrcp.tpc@gmail.com</p></div></div></div>
-								</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-				</div>
+            <div class="profile-container">
+                <!-- Executive Card -->
+                <div class="executive-card">
+                    <div class="executive-image-wrap">
+                        <div class="image-inner">
+                            <img src="assets/images/dr-hima-bindu.jpg" alt="Dr P. Hima Bindu">
+                        </div>
+
+                    </div>
+                    <div class="executive-details">
+                        <span class="executive-subtitle">Placement Leadership</span>
+                        <h2 class="executive-title">Dr. P. Hima Bindu</h2>
+                        <h4 class="executive-role">Associate Dean - Training &amp; Placement</h4>
+                        <p class="executive-bio"><span class="bio-lead">With a strong foundation in HRM and student development,</span> Dr. Hima Bindu has contributed extensively to research, with multiple publications and conference presentations to her credit. She has further strengthened her expertise through a certification in HR Analytics from IIM Rohtak.</p>
+                        <p class="executive-bio">In her leadership role, she plays a pivotal part in shaping industry-ready graduates by designing and implementing structured training programs that focus on both technical proficiency and soft skills. Her approach emphasizes holistic student development, combining academic knowledge with practical exposure, mentorship, and career guidance.</p>
+                        <p class="executive-bio">Known for her strong mentorship abilities, she actively engages with students to enhance their employability, guiding them through skill development, interview preparation, and career planning. Her efforts have consistently contributed to strengthening placement outcomes and building meaningful industry connections for the institution.</p>
+                        
+                        <div class="credentials-grid">
+                            <div class="credential-item">
+                                <div class="credential-icon">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                                <div class="credential-text">
+                                    <div class="credential-title">Ph.D.</div>
+                                    <div class="credential-desc">HRM, Osmania University</div>
+                                </div>
+                            </div>
+                            <div class="credential-item">
+                                <div class="credential-icon">
+                                    <i data-lucide="award"></i>
+                                </div>
+                                <div class="credential-text">
+                                    <div class="credential-title">IIMR</div>
+                                    <div class="credential-desc">HR Analytics Certified</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact & Call to Action -->
+                <div class="contact-cta-card">
+                    <div class="cta-heading-wrap">
+                        <div class="cta-icon">
+                            <i data-lucide="phone-call"></i>
+                        </div>
+                        <h3 class="cta-title">Campus Recruitment Assistance</h3>
+                    </div>
+                    <p class="cta-desc">Connect with our placement cell for campus recruitment drives, collaboration opportunities, or student verification.</p>
+                    
+                    <div class="contact-info-grid">
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-label">Placement Officer</span>
+                                <span class="contact-value">Dr. P. Hima Bindu</span>
+                            </div>
+                        </div>
+                        <a href="tel:+919248727214" class="contact-card interactive">
+                            <div class="contact-card-icon">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-label">Mobile Numbers</span>
+                                <span class="contact-value">9248727214 / 9704409222</span>
+                            </div>
+                        </a>
+                        <a href="mailto:placements@cmrgroup.org" class="contact-card interactive">
+                            <div class="contact-card-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-label">Email Addresses</span>
+                                <span class="contact-value">placements@cmrgroup.org</span>
+                                <span class="contact-value-sub">cmrcp.tpc@gmail.com</span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>

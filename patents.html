@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -164,8 +164,25 @@
         .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
         .flex-col { flex: 1; min-width: 200px; }
         .text-orange { color: var(--orange-light) !important; }
-        .text-bold { font-weight: 700; }
         .content-block { margin-bottom: 24px; }
+
+        /* Publications/Patents List Layout */
+        .pub-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--navy-light);
+            padding: 16px 32px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--orange);
+            border-radius: var(--radius-sm);
+        }
+        .pub-title {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 15px;
+        }
 
         /* Inline images from content */
         .inner-content-wrap img {
@@ -245,7 +262,7 @@
             <li><a href="newsletter.html">College News Letters</a></li>
             <li><a href="college-magazine.html">College Magazine</a></li>
             <li><a href="NSS.html">NSS</a></li>
-            <li><a href="http://cmrcp.ac.in/wp-content/uploads/2025/02/nirf.pdf" target="_blank">NIRF</a></li>
+            <li><a href="Files/NIRF2026.pdf" target="_blank">NIRF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/5.-SIF-Report.pdf" target="_blank">SIF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/6.-approval.pdf" target="_blank">Approvals</a></li>
             <li><a href="Files/NBA Reports/NBA-report.pdf" target="_blank">NBA Report</a></li>
@@ -470,7 +487,7 @@
           <div class="dropdown mega-dropdown">
             <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
               <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
-              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="anti-discrimination-committee.html">Anti-Discrimination Cell</a>
               <a href="career-guidance.html">Career Guidance</a>
               <a href="women-protection-cell.html">Women Protection Cell</a>
               <a href="disciplinary-committee.html">Disciplinary Committee</a>
@@ -635,6 +652,27 @@
 			<div>
 						<div>
 				<div class="content-block">
+									<h2 class="three" style="font-size: 24px; color: var(--orange-light); margin-bottom: 20px;">Year-Wise Patents</h2>
+									<div style="margin-bottom: 40px;">
+										<div class="pub-row">
+											<div class="pub-title">Patents 2025</div>
+											<a class="boxed-btn1" href="Files/Patents/patents 25.pdf" target="_blank" rel="noopener">View PDF</a>
+										</div>
+										<div class="pub-row">
+											<div class="pub-title">Patents 2024</div>
+											<a class="boxed-btn1" href="Files/Patents/patents 24.pdf" target="_blank" rel="noopener">View PDF</a>
+										</div>
+										<div class="pub-row">
+											<div class="pub-title">Patents 2023</div>
+											<a class="boxed-btn1" href="Files/Patents/patents 23.pdf" target="_blank" rel="noopener">View PDF</a>
+										</div>
+										<div class="pub-row">
+											<div class="pub-title">Patents 2022</div>
+											<a class="boxed-btn1" href="Files/Patents/patents 22.pdf" target="_blank" rel="noopener">View PDF</a>
+										</div>
+									</div>
+									<hr style="border-color: var(--border); margin: 40px 0;" />
+									
 									<h3>Patents/Copyrights</h3>
 <div class="container-fluid">
 <div class="container ptb">

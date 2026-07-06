@@ -1279,3 +1279,22 @@ section {
 .elementor-text-editor h3 {
   color: #fff !important;
 }
+
+/* ============================================================
+   GLOBAL TABLE FULL-WIDTH FIXES
+   ============================================================ */
+table,
+.table,
+.tbl,
+.data-table,
+.responsive-table,
+.gov-table,
+.adm-table {
+  width: 100% !important;
+  border-collapse: collapse;
+}
+
+.table-container {
+  width: 100% !important;
+  overflow-x: auto;
+}

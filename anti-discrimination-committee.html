@@ -1,0 +1,759 @@
+<html lang="en"><head></head><body>﻿
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Discrimination Committee | CMR College of Pharmacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ===== INNER PAGE CONTENT STYLES ===== */
+        .inner-content-wrap {
+            background: var(--navy);
+            min-height: 60vh;
+            padding: 64px 0 80px;
+        }
+        .inner-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Profile card layout */
+        .profile-layout {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+        .profile-img-col {
+            flex-shrink: 0;
+            width: 200px;
+            text-align: center;
+        }
+        .profile-img-col img {
+            width: 180px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            border: 3px solid var(--orange);
+        }
+        .profile-text-col { flex: 1; }
+        .profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .profile-designation {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--orange-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        .profile-bio {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+        }
+
+        /* Data table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+        }
+        .data-table th {
+            background: rgba(249,115,22,0.15);
+            color: var(--orange-light);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        /* Generic text content */
+        .page-text-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 48px;
+            margin-bottom: 32px;
+        }
+        .page-text-section p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .page-text-section h2, .page-text-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--orange-light);
+            font-size: 28px;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        .page-text-section ul, .page-text-section ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        .page-text-section li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 8px;
+        }
+
+        /* Gallery image grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .gallery-grid img:hover { transform: scale(1.03); border-color: var(--orange); }
+
+        /* Committee member card */
+        .committee-section {
+            margin-bottom: 40px;
+        }
+        .committee-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: var(--orange-light);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Fix old WP classes */
+        .flex-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+        .flex-col { flex: 1; min-width: 200px; }
+        .text-orange { color: var(--orange-light) !important; }
+        .text-bold { font-weight: 700; }
+        .content-block { margin-bottom: 24px; }
+
+        /* Inline images from content */
+        .inner-content-wrap img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin: 16px 0;
+        }
+        .inner-content-wrap table { width: 100%; }
+        .inner-content-wrap table th, .inner-content-wrap table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+        .inner-content-wrap table th {
+            background: rgba(249,115,22,0.12);
+            color: var(--orange-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .inner-content-wrap table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+                @media (max-width: 768px) {
+            .profile-layout { flex-direction: column; }
+            .profile-img-col { width: 100%; }
+            .page-text-section { padding: 20px 16px; }
+            .inner-container { padding: 0 12px; }
+            .page-text-section h2, .page-text-section h3, h2.tit, h2.three { font-size: 22px !important; margin-top: 20px; line-height: 1.3; }
+            .page-text-section p, .page-text-section li, p.one { font-size: 15px !important; line-height: 1.6; }
+            .profile-name { font-size: 24px; }
+            .profile-designation { font-size: 13px; }
+            .profile-bio { font-size: 14px; line-height: 1.6; }
+            .data-table th, .inner-content-wrap table th { font-size: 12px; padding: 10px; }
+            .data-table td, .inner-content-wrap table td { font-size: 13px; padding: 10px; }
+            .committee-title { font-size: 22px; }
+        }
+    </style>
+
+
+
+    <!-- PRE-HEADER -->
+    <div class="pre-header">
+        <a href="#">Online Fee Payment</a>
+        <a href="#">Brochure Download</a>
+        <a href="#">360° Campus Tour</a>
+        <a href="#">Grievance / Ombudsperson</a>
+    </div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="header-top">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:60px;max-height:60px;max-width:calc(100vw - 100px);width:auto;min-width:0;object-fit:contain;display:block;">
+            </a>
+            <div class="header-contact hide-mobile">
+                <a href="tel:+917032466693"><i data-lucide="phone" style="width:16px;height:16px;"></i> +91 7032466693</a>
+                <a href="mailto:cmrcollegeofpharmacy@gmail.com"><i data-lucide="mail" style="width:16px;height:16px;"></i> cmrcollegeofpharmacy@gmail.com</a>
+                <a href="#" class="nav-apply-btn" style="margin-left:16px;">Apply Now</a>
+            </div>
+            <div class="hamburger" id="hamburger" style="color:var(--navy);">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="nav-container">
+                
+      <ul class="nav-links" role="list">
+                <li class="nav-item">
+          <a href="index.html" class="nav-link">Home <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="about-college.html">About College</a></li>
+            <li><a href="vision-mission.html">Vision &amp; Mission</a></li>
+            <li><a href="latest-news.html">Latest News</a></li>
+            <li><a href="newsletter.html">College News Letters</a></li>
+            <li><a href="college-magazine.html">College Magazine</a></li>
+            <li><a href="NSS.html">NSS</a></li>
+            <li><a href="Files/NIRF2026.pdf" target="_blank">NIRF</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/5.-SIF-Report.pdf" target="_blank">SIF</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/6.-approval.pdf" target="_blank">Approvals</a></li>
+            <li><a href="Files/NBA Reports/NBA-report.pdf" target="_blank">NBA Report</a></li>
+            <li><a href="https://cmrcp.ac.in/wp-content/uploads/2026/02/e-NBA-SAR-CMRCP.pdf" target="_blank">e-NBA SAR</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">About Us <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">Administration <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="principal.html">Principal </a>
+            </li>
+            <li class="">
+              <a href="administrative-officer.html">Administrative Officer </a>
+            </li>
+            <li class="">
+              <a href="accounts-audit-reports.html">Accounts Audit Reports </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Management.html">Management </a>
+            </li>
+            <li class="">
+              <a href="governing-body.html">Governing Body </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Facilities <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="library-2.html">Library </a>
+            </li>
+            <li class="">
+              <a href="computer-lab.html">Computer Lab </a>
+            </li>
+            <li class="">
+              <a href="transportation.html">Transportation </a>
+            </li>
+            <li class="">
+              <a href="hostel.html">Hostel </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Infrastructure <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="class-rooms.html">Class Rooms </a>
+            </li>
+            <li class="">
+              <a href="laboratories.html">Laboratories </a>
+            </li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="Files/ServiceRules.pdf" target="_blank">Service Rules/HR Manual </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Academics <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="college-academic-committee.html">College Academic Committee </a>
+            </li>
+            <li class="">
+              <a href="admission-procedure.html">Admission procedure </a>
+            </li>
+            <li class="">
+              <a href="fee-details.html">Fee Details </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars </a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Downloads <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="https://jntuh.ac.in/syllabus">Syllabus </a>
+            </li>
+            <li class="">
+              <a href="https://jntuh.ac.in/time-table">Examination Time Tables </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">R &amp; D <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="members.html">Members </a>
+            </li>
+            <li class="">
+              <a href="faculty-innovations.html">Faculty Innovations </a>
+            </li>
+            <li class="">
+              <a href="sponsored-projects.html">Sponsored Projects </a>
+            </li>
+            <li class="">
+              <a href="consultancy-projects.html">Consultancy Projects </a>
+            </li>
+            <li class="">
+              <a href="research-review-publications.html">Research &amp; Review Publications </a>
+            </li>
+            <li class="">
+              <a href="patents.html">Patents/Copy Rights </a>
+            </li>
+            <li class="">
+              <a href="books.html">Books </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Programs Offered <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li class="has-submenu">
+              <a href="#">B.Pharmacy <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="b-pharm-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-vision.html">Vision,Mission,PEO's,PO's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-hod.html">HOD's </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="b-pharm-roll-of-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">M.Pharmacy <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="has-submenu">
+              <a href="#">Pharmaceutics <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmaceutics-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-faculty-list.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmaceutics-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmaceutical Analysis <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pa-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pa-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pa-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharmacology <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmacology-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmacology-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Pharm. D <span class="chevron-right">›</span></a>
+              <ul class="submenu dropdown">
+            <li class="">
+              <a href="pharmd-about.html">About </a>
+            </li>
+            <li class="">
+              <a href="pharmd-faculty-details.html">Faculty List </a>
+            </li>
+            <li class="">
+              <a href="pharmad-roll-honour.html">Roll Honour </a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Placements <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li class="">
+              <a href="placement-team.html">Placement Team </a>
+            </li>
+            <li class="">
+              <a href="placement-details.html">Placement Details </a>
+            </li>
+            <li class="">
+              <a href="companies-visited.html">Companies Visited </a>
+            </li>
+            <li class="">
+              <a href="upcoming-placements.html">Upcoming Placements </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Campus Life <span class="chevron">▾</span></a>
+          <div class="dropdown mega-dropdown">
+            <div class="mega-col"><div class="mega-heading">Committees &amp; Cells</div>
+              <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
+              <a href="anti-discrimination-committee.html">Anti-Discrimination Cell</a>
+              <a href="career-guidance.html">Career Guidance</a>
+              <a href="women-protection-cell.html">Women Protection Cell</a>
+              <a href="disciplinary-committee.html">Disciplinary Committee</a>
+              <a href="sc-st-committee.html">SC/ST Committee</a>
+              <a href="library-committee.html">Library Committee</a>
+              <a href="programme-assessment-committee.html">Programme Assessment Committee</a>
+              <a href="program-advisory-board.html">Program Advisory Board</a>
+              <a href="grievances-redressal-committee.html">Grievances &amp; Redressal Committee</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">More Committees</div>
+              <a href="right-to-information-committee.html">Right To Information Committee</a>
+              <a href="purchase-committee.html">Purchase Committee</a>
+              <a href="institutional-animal-ethics-committee.html">Institutional Animal Ethics Committee</a>
+              <a href="industry-institute-interaction-cell.html">Industry Institute Interaction Cell</a>
+              <a href="entrepreneurship-cell.html">Entrepreneurship Cell</a>
+              <a href="career-guidance.html">Career Guidance Cell</a>
+              <a href="gender-sensitization-cell.html">GENDER SENSITIZATION CELL</a>
+              <a href="board-members.html">Board Members</a>
+              <a href="graduated-student-details-2021.html">Graduated Student Details 2021</a>
+              <a href="graduated-student-details-2020.html">Graduated Student Details 2020</a>
+            </div>
+            <div class="mega-col"><div class="mega-heading">Alumni &amp; Memberships</div>
+              <a href="graduated-student-details-2019.html">Graduated Student Details 2019</a>
+              <a href="graduated-student-details-2018.html">Graduated Student Details 2018</a>
+              <a href="mous.html">MOU's</a>
+              <a href="faculty-student-membership-details.html">Faculty &amp; Student Membership Details</a>
+              <a href="achievements-awards.html">Acheivements &amp; Awards</a>
+              <a href="https://cmrcp.almagrievance.com/">Grievance cell</a>
+              <a href="gpat.html">NIPER, GPAT RANKS 2019-20</a>
+              <a href="/Files/2019-GPAT-and-NIPER-Ranks.pdf">NIPER, GPAT RANKS 2018-19</a>
+              <a href="/Files/NIPER-GPAT-RANKS-2017-2018.pdf">NIPER, GPAT RANKS 2017-18</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Activities &amp; Gallery <span class="chevron">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="main-gallery.html">Gallery</a></li>
+            <li><a href="event-gallery.html">Event Gallery</a></li>
+            <li><a href="conferences-seminars.html">Conferences/Seminars</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="fdps.html">FDP's</a></li>
+            <li><a href="guest-lectures.html">Guest Lectures</a></li>
+                        <li><a href="extra-curricular.html">Extra Curricular &amp; Co-Curricular Activities</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Student Feedback</a></li>
+        <li class="nav-item"><a href="NSS.html" class="nav-link">NSS</a></li>
+      </ul>
+      
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation Menu">
+        <div class="mobile-menu-header">
+            <img src="assets/img/logo.jpg" alt="CMRCP Logo" style="height:40px;object-fit:contain;background:#fff;padding:4px 8px;border-radius:6px;">
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close Menu">✕</button>
+        </div>
+        <div class="mobile-menu-body">
+            <a href="index.html" class="mob-nav-link">Home</a>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">About Us <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="about-college.html">About College</a>
+                    <a href="vision-mission.html">Vision &amp; Mission</a>
+                    <a href="principal.html">Principal</a>
+                    <a href="governing-body.html">Governing Body</a>
+                    <a href="Management.html">Management</a>
+                    <a href="latest-news.html">Latest News</a>
+                    <a href="newsletter.html">College News Letters</a>
+                    <a href="NSS.html">NSS</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Academics <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="college-academic-committee.html">College Academic Committee</a>
+                    <a href="admission-procedure.html">Admission Procedure</a>
+                    <a href="fee-details.html">Fee Details</a>
+                    <a href="https://jntuh.ac.in/academic-calendars">Academic Calendars</a>
+                    <a href="https://jntuh.ac.in/syllabus">Syllabus</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Programs Offered <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="b-pharm-about.html">B.Pharmacy</a>
+                    <a href="pharmaceutics-about.html">M.Pharmacy – Pharmaceutics</a>
+                    <a href="pa-about.html">M.Pharmacy – Pharmaceutical Analysis</a>
+                    <a href="pharmacology-about.html">M.Pharmacy – Pharmacology</a>
+                    <a href="pharmd-about.html">Pharm.D</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">R &amp; D <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="members.html">Members</a>
+                    <a href="faculty-innovations.html">Faculty Innovations</a>
+                    <a href="sponsored-projects.html">Sponsored Projects</a>
+                    <a href="patents.html">Patents/Copy Rights</a>
+                    <a href="research-review-publications.html">Research &amp; Review Publications</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Placements <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="placement-team.html">Placement Team</a>
+                    <a href="placement-details.html">Placement Details</a>
+                    <a href="companies-visited.html">Companies Visited</a>
+                    <a href="upcoming-placements.html">Upcoming Placements</a>
+                </div>
+            </div>
+
+            <div class="mob-nav-group">
+                <button class="mob-nav-title">Activities &amp; Gallery <span class="mob-chevron">▼</span></button>
+                <div class="mob-sub-menu">
+                    <a href="main-gallery.html">Gallery</a>
+                    <a href="event-gallery.html">Event Gallery</a>
+                    <a href="conferences-seminars.html">Conferences/Seminars</a>
+                    <a href="workshops.html">Workshops</a>
+                    <a href="guest-lectures.html">Guest Lectures</a>
+                    <a href="extra-curricular.html">Extra Curricular Activities</a>
+                </div>
+            </div>
+
+            <a href="contact.html" class="mob-nav-link">Contact Us</a>
+            <a href="feedback.html" class="mob-nav-link">Student Feedback</a>
+            <a href="admissions.html" class="mobile-menu-apply">📄 Apply Now 2025-26</a>
+        </div>
+    </div>
+
+    
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="container">
+            <h1 class="page-hero-title">Anti-Discrimination Committee</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Anti-Discrimination Committee</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="inner-content-wrap">
+        <div class="inner-container">
+            <div class="page-text-section">
+                
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-aee895a elementor-section-boxed elementor-section-height-default elementor-section-height-default">
+						<div>
+					<div>
+			<div>
+						<div>
+				<div class="content-block">
+									<h2 class="tit">ANTI-DISCRIMINATION COMMITTEE</h2>
+
+
+<table class="tbl lato f-16">
+<thead>
+<tr>
+<th>S. No</th>
+<th>Actual Designation</th>
+<th>Member Name</th>
+<th>Designation in Committee</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Professor</td><td>Dr. V. Uma Maheswara Rao</td><td>Chairman</td></tr>
+<tr><td>2</td><td>Associate Professor</td><td>Dr. G.S. Sharma</td><td>Member secretary</td></tr>
+<tr><td>3</td><td>Associate Professor</td><td>Dr. P. Kishore Kumar</td><td>Member</td></tr>
+<tr><td>4</td><td>Associate Professor</td><td>Dr. N. Madhavi</td><td>Member</td></tr>
+<tr><td>5</td><td>Associate Professor</td><td>Dr. P. Pravalika</td><td>Member</td></tr>
+<tr><td>6</td><td>Others</td><td>Mr. Wilson Prasad</td><td>Member</td></tr>
+<tr><td>7</td><td>Administrative officer</td><td>Mrs. G.Vijaya</td><td>Member</td></tr>
+</tbody>
+</table>								</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+		
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="assets/img/logo.jpg" alt="CMR College of Pharmacy" style="height: 80px; background: white; padding: 8px 16px; border-radius: 8px;"></div>
+                <p class="footer-desc">CMR College of Pharmacy is dedicated to fostering professional graduates with consistent quality education, training, and research to serve industry, environment, and society.</p>
+                <div style="display:flex; gap:12px;">
+                    <!-- Social icons placeholders -->
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">f</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">in</a>
+                    <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;">t</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs Offered</a>
+                    <a href="admissions.html">Admission Procedure</a>
+                    <a href="placements.html">Placements</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Academics</h4>
+                <div class="footer-links">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Syllabus</a>
+                    <a href="#">Exam Timetables</a>
+                    <a href="#">JNTUH Portal</a>
+                    <a href="#">Library</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Contact Info</h4>
+                <div class="footer-links">
+                    <span style="color:var(--text-muted);font-size:14px;line-height:1.6;">
+                        <strong>Address:</strong> Kandlakoya (V), Medchal Road,<br>Hyderabad – 501 401, Telangana.
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px; margin-top:8px;">
+                        <strong>Phone:</strong> +91 7032466693
+                    </span>
+                    <span style="color:var(--text-muted);font-size:14px;">
+                        <strong>Email:</strong> cmrcollegeofpharmacy@gmail.com
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>© 2026 CMR College of Pharmacy. All Rights Reserved. | Designed by <a href="https://www.besure.today" target="_blank" style="color:var(--orange-light); text-decoration:none;">www.Besure.Today</a></div>
+            
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+
+
+</body></html>

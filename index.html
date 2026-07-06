@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -119,7 +119,10 @@
         .marquee-wrapper::before, .marquee-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; }
         .marquee-wrapper::before { left: 0; background: linear-gradient(to right, var(--navy-mid), transparent); }
         .marquee-wrapper::after { right: 0; background: linear-gradient(to left, var(--navy-mid), transparent); }
-        .marquee-content { display: flex; gap: 40px; animation: scroll-left 10s linear infinite; white-space: nowrap; padding-left: 40px; width: max-content; }
+        .marquee-content { display: flex; align-items: center; gap: 40px; animation: scroll-left 15s linear infinite; white-space: nowrap; padding-left: 40px; width: max-content; }
+        .marquee-logo-card { background: #ffffff; border-radius: var(--radius-sm); height: 60px; min-width: 140px; display: inline-flex; align-items: center; justify-content: center; padding: 6px 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: var(--transition); }
+        .marquee-logo-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .marquee-logo-card img { height: auto; max-height: 44px; width: auto; max-width: 100%; object-fit: contain; }
         .marquee-item { font-size: 20px; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
         .marquee-item:hover { color: #fff; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -221,7 +224,7 @@
             <li><a href="newsletter.html">College News Letters</a></li>
             <li><a href="college-magazine.html">College Magazine</a></li>
             <li><a href="NSS.html">NSS</a></li>
-            <li><a href="http://cmrcp.ac.in/wp-content/uploads/2025/02/nirf.pdf" target="_blank">NIRF</a></li>
+            <li><a href="Files/NIRF2026.pdf" target="_blank">NIRF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/5.-SIF-Report.pdf" target="_blank">SIF</a></li>
             <li><a href="https://cmrcp.ac.in/wp-content/uploads/2025/07/6.-approval.pdf" target="_blank">Approvals</a></li>
             <li><a href="Files/NBA Reports/NBA-report.pdf" target="_blank">NBA Report</a></li>
@@ -446,7 +449,7 @@
           <div class="dropdown mega-dropdown">
             <div class="mega-col"><div class="mega-heading">Committees & Cells</div>
               <a href="anti-ragging-committee.html">Anti-Ragging Committee</a>
-              <a href="https://cmrcp.ac.in/wp-content/uploads/2022/08/Anti-discrimination%20cell.pdf">Anti-Discrimination Cell</a>
+              <a href="anti-discrimination-committee.html">Anti-Discrimination Cell</a>
               <a href="career-guidance.html">Career Guidance</a>
               <a href="women-protection-cell.html">Women Protection Cell</a>
               <a href="disciplinary-committee.html">Disciplinary Committee</a>
